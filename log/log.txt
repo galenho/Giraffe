@@ -1,5 +1,0 @@
-2022-01-04 16:54:59 LoadRes
-2022-01-04 16:54:59 Init(): logserver started
-2022-01-04 16:54:59 internal.ReqLogin is success :1010
-2022-01-04 16:54:59 internal.ReqLogin is success :1041
-2022-01-04 16:54:59 internal.ReqLogin is success :1031
