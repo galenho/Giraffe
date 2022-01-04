@@ -1,2 +1,2 @@
 cd robot
-start "robot" ..\crossoverD.exe
+start "robot" ..\crossover.exe
