@@ -1,0 +1,29 @@
+import "common.proto";
+
+message C2SReqClientLogin 
+{
+    optional int32 platform_idx = 1;
+    optional string account_name = 2;
+    optional string password = 3;
+}
+
+message C2SReqCharacterList 
+{
+	
+}
+
+message C2SReqCreateCharacter
+{
+	optional string name = 1;
+	optional int32  type_idx = 2;
+}
+
+message C2SReqDeleteCharacter
+{
+	optional uint64 pid = 1;
+}
+
+message C2SReqEnterGame
+{
+	optional uint64 pid = 1;
+}

@@ -1,0 +1,22 @@
+import "common.proto";
+
+message S2CRepClientLogin 
+{
+    optional int32 login_result = 1;
+    optional int32 account_idx = 2;
+}
+
+message LoginShowInfo 
+{
+	optional int64 pid = 1;					// 角色唯一id
+	optional string name	= 2;			// 名字
+	optional int32 type_idx = 3;			// 角色类型
+	optional int32 level	= 4;			// 等级
+	optional uint64 last_update_time = 5;	// 最后更新时间
+}
+
+message S2CRepCharacterList 
+{
+    optional uint64 last_login_pid = 1;
+	repeated LoginShowInfo char_data	= 2;
+}

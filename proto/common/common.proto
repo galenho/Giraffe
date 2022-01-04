@@ -1,0 +1,28 @@
+
+message PosInfo 
+{
+    required float x = 1;
+    required float y = 2;
+    required float z = 3;
+    required float dir = 4;
+}
+
+message ClientUID 
+{
+    required int32 srv_uid = 1;
+    required int32 session_uid = 2;
+}
+
+message SimpleRole 
+{
+    required int32 pid = 1;
+    required string name = 2;
+    required int32 grade = 3;
+}
+
+message TitleInfo 
+{
+    required int32 tid = 1;
+    required string name = 2;
+    required int32 achieve_time = 3;
+}

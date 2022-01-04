@@ -1,0 +1,86 @@
+2021-12-27 19:41:16 LoadRes
+2021-12-27 19:41:16 connect to server. at: 127.0.0.1, 11000, SERVER TYPE = 1
+2021-12-27 19:41:16 connect to server. at: 127.0.0.1, 50001, SERVER TYPE = 6
+2021-12-27 19:41:16 connect to server. at: 127.0.0.1, 50002, SERVER TYPE = 7
+2021-12-27 19:41:16 Init(): mapserver started
+2021-12-27 19:41:16 login server success. SERVER UID = 1060  SERVER TYPE = 6
+2021-12-27 19:41:16 login server success. SERVER UID = 1070  SERVER TYPE = 7
+2021-12-27 19:41:16 -------------------------------------------
+2021-12-27 19:41:16 ms serial_idx : 10001527
+2021-12-27 19:41:16 -------------------------------------------
+2021-12-27 19:41:16 internal.ReqLogin is success :1021
+2021-12-27 19:41:17 login server success. SERVER UID = 1010  SERVER TYPE = 1
+2021-12-27 19:41:17 internal.AppServerList 
+2021-12-27 19:41:17 internal.AppServerAdd srv_uid = 1050
+2021-12-27 19:41:17 internal.AppServerAdd srv_uid = 1021
+2021-12-27 19:41:17 internal.AppServerAdd srv_uid = 1041
+2021-12-27 19:41:20 server disconnected. srv_type:1 server uid:1010  ip:127.0.0.1  port:11000
+2021-12-27 19:41:20 exit success!
+2021-12-27 20:12:33 LoadRes
+2021-12-27 20:12:33 connect to server. at: 127.0.0.1, 11000, SERVER TYPE = 1
+2021-12-27 20:12:33 connect to server. at: 127.0.0.1, 50001, SERVER TYPE = 6
+2021-12-27 20:12:33 connect to server. at: 127.0.0.1, 50002, SERVER TYPE = 7
+2021-12-27 20:12:33 Init(): mapserver started
+2021-12-27 20:12:33 login server success. SERVER UID = 1060  SERVER TYPE = 6
+2021-12-27 20:12:33 login server success. SERVER UID = 1070  SERVER TYPE = 7
+2021-12-27 20:12:33 internal.ReqLogin is success :1021
+2021-12-27 20:12:33 -------------------------------------------
+2021-12-27 20:12:33 ms serial_idx : 10001532
+2021-12-27 20:12:33 -------------------------------------------
+2021-12-27 20:12:34 login server success. SERVER UID = 1010  SERVER TYPE = 1
+2021-12-27 20:12:34 internal.AppServerList 
+2021-12-27 20:12:34 internal.AppServerAdd srv_uid = 1041
+2021-12-27 20:17:17 LoadRes
+2021-12-27 20:17:17 connect to server. at: 127.0.0.1, 11000, SERVER TYPE = 1
+2021-12-27 20:17:17 connect to server. at: 127.0.0.1, 50001, SERVER TYPE = 6
+2021-12-27 20:17:17 connect to server. at: 127.0.0.1, 50002, SERVER TYPE = 7
+2021-12-27 20:17:17 Init(): mapserver started
+2021-12-27 20:17:17 login server success. SERVER UID = 1060  SERVER TYPE = 6
+2021-12-27 20:17:17 login server success. SERVER UID = 1070  SERVER TYPE = 7
+2021-12-27 20:17:17 -------------------------------------------
+2021-12-27 20:17:17 ms serial_idx : 10001534
+2021-12-27 20:17:17 -------------------------------------------
+2021-12-27 20:17:17 internal.ReqLogin is success :1021
+2021-12-27 20:17:17 login server success. SERVER UID = 1010  SERVER TYPE = 1
+2021-12-27 20:17:17 internal.AppServerList 
+2021-12-27 20:17:17 internal.AppServerAdd srv_uid = 1041
+2021-12-27 20:17:19 internal.AppServerAdd srv_uid = 1050
+2021-12-27 20:17:28 exit success!
+2021-12-30 16:54:04 LoadRes
+2021-12-30 16:54:04 connect to server. at: 127.0.0.1, 11000, SERVER TYPE = 1
+2021-12-30 16:54:04 connect to server. at: 127.0.0.1, 50001, SERVER TYPE = 6
+2021-12-30 16:54:04 connect to server. at: 127.0.0.1, 50002, SERVER TYPE = 7
+2021-12-30 16:54:04 Init(): mapserver started
+2021-12-30 16:54:04 login server success. SERVER UID = 1060  SERVER TYPE = 6
+2021-12-30 16:54:04 login server success. SERVER UID = 1070  SERVER TYPE = 7
+2021-12-30 16:54:04 internal.ReqLogin is success :1021
+2021-12-30 16:54:04 -------------------------------------------
+2021-12-30 16:54:04 ms serial_idx : 10001538
+2021-12-30 16:54:04 -------------------------------------------
+2021-12-30 16:54:04 login server success. SERVER UID = 1010  SERVER TYPE = 1
+2021-12-30 16:54:04 internal.AppServerList 
+2021-12-30 16:54:04 internal.AppServerAdd srv_uid = 1041
+2021-12-30 16:54:04 internal.AppServerAdd srv_uid = 1021
+2021-12-30 16:54:56 exit success!
+2022-01-04 15:55:55 LoadRes
+2022-01-04 15:55:55 connect to server. at: 127.0.0.1, 11000, SERVER TYPE = 1
+2022-01-04 15:55:55 connect to server. at: 127.0.0.1, 50001, SERVER TYPE = 6
+2022-01-04 15:55:55 connect to server. at: 127.0.0.1, 50002, SERVER TYPE = 7
+2022-01-04 15:55:55 Init(): mapserver started
+2022-01-04 15:55:55 login server success. SERVER UID = 1060  SERVER TYPE = 6
+2022-01-04 15:55:55 -------------------------------------------
+2022-01-04 15:55:55 ms serial_idx : 10001543
+2022-01-04 15:55:55 -------------------------------------------
+2022-01-04 15:55:56 login server success. SERVER UID = 1010  SERVER TYPE = 1
+2022-01-04 15:55:56 internal.AppServerList 
+2022-01-04 15:55:56 internal.AppServerAdd srv_uid = 1021
+2022-01-04 15:55:56 internal.ReqLogin is success :1021
+2022-01-04 15:55:56 internal.AppServerAdd srv_uid = 1050
+2022-01-04 15:55:56 internal.AppServerAdd srv_uid = 1041
+2022-01-04 15:55:56 login server success. SERVER UID = 1070  SERVER TYPE = 7
+2022-01-04 15:56:28 SERVERTYPE_CONNECT, conn_idx = 4, realm_idx = 1, srv_uid = 1021, area_idx = 1
+2022-01-04 15:56:28 -------------------------------------------------------------------------------------------
+2022-01-04 15:56:28 SERVERTYPE_DB, conn_idx = 2, realm_idx = 1, srv_uid = 1060, area_idx = 0
+2022-01-04 15:56:28 SERVERTYPE_WORLD, conn_idx = 1, realm_idx = 1, srv_uid = 1010, area_idx = 0
+2022-01-04 15:56:28 SERVERTYPE_LOG, conn_idx = 3, realm_idx = 1, srv_uid = 1070, area_idx = 0
+2022-01-04 15:56:32 exit success!

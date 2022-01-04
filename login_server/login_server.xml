@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+ <realm_idx>1</realm_idx>
+ <ws_ip>127.0.0.1</ws_ip>
+ <ws_port>11000</ws_port>
+ <ds_ip>127.0.0.1</ds_ip>
+ <ds_port>50001</ds_port>
+ <log_ip>127.0.0.1</log_ip>
+ <log_port>50002</log_port>
+ <csm_ip>127.0.0.1</csm_ip>
+ <csm_port>61000</csm_port>
+ <area_idx>1</area_idx>
+ <ip_for_client>127.0.0.1</ip_for_client>
+ <port_for_client>6100</port_for_client>
+ <external_ip_for_client>127.0.0.1</external_ip_for_client>
+ <configdb hostname="127.0.0.1" port="4769" username="root" password="88104725galenho" database="ydzf_configdb" conn_count="1"></configdb>
+ 
+ <performence_monintor is_connect="0" url="http://127.0.0.1:2100/do" send_interval="5"/>
+</root>

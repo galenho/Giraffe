@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+ <realm_idx>1</realm_idx>
+ <ws_ip>127.0.0.1</ws_ip>
+ <ws_port>11000</ws_port>
+ <ip_for_server>127.0.0.1</ip_for_server>
+ <port_for_server>61000</port_for_server>
+ <ip_for_ps>127.0.0.1</ip_for_ps>
+ <port_for_ps>60001</port_for_ps>
+ <external_ip_for_client>127.0.0.1</external_ip_for_client>
+ <name>server1</name>
+ <gamedb hostname="127.0.0.1" port="4769" username="root" password="88104725galenho" database="ydzf_gamedb" conn_count="1"></gamedb>
+ <ps_url>http://169.254.144.94:60016/do</ps_url>
+ <csmgr_url>http://169.254.144.94:60001/do</csmgr_url>
+ <performence_monintor is_connect="0" url="http://127.0.0.1:2100/do" send_interval="5"/>
+</root>

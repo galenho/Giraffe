@@ -1,0 +1,37 @@
+2021-12-27 19:41:16 LoadRes
+2021-12-27 19:41:16 Init(): dbserver started
+2021-12-27 19:41:16 internal.ReqLogin is success :1010
+2021-12-27 19:41:16 internal.ReqLogin is success :1031
+2021-12-27 19:41:16 internal.ReqLogin is success :1041
+2021-12-27 19:41:16 internal.ReqLogin is success :1021
+2021-12-27 19:41:20 exit success!
+2021-12-27 20:12:33 LoadRes
+2021-12-27 20:12:33 Init(): dbserver started
+2021-12-27 20:12:33 internal.ReqLogin is success :1041
+2021-12-27 20:12:33 internal.ReqLogin is success :1010
+2021-12-27 20:12:33 internal.ReqLogin is success :1031
+2021-12-27 20:17:17 LoadRes
+2021-12-27 20:17:17 Init(): dbserver started
+2021-12-27 20:17:17 internal.ReqLogin is success :1031
+2021-12-27 20:17:17 internal.ReqLogin is success :1021
+2021-12-27 20:17:17 internal.ReqLogin is success :1010
+2021-12-27 20:17:17 internal.ReqLogin is success :1041
+2021-12-27 20:17:28 exit success!
+2021-12-30 16:54:04 LoadRes
+2021-12-30 16:54:04 Init(): dbserver started
+2021-12-30 16:54:04 internal.ReqLogin is success :1031
+2021-12-30 16:54:04 internal.ReqLogin is success :1010
+2021-12-30 16:54:04 internal.ReqLogin is success :1041
+2021-12-30 16:54:04 internal.ReqLogin is success :1021
+2021-12-30 16:54:56 exit success!
+2022-01-04 15:55:55 LoadRes
+2022-01-04 15:55:55 Init(): dbserver started
+2022-01-04 15:55:55 internal.ReqLogin is success :1010
+2022-01-04 15:55:55 internal.ReqLogin is success :1031
+2022-01-04 15:55:55 internal.ReqLogin is success :1021
+2022-01-04 15:55:55 internal.ReqLogin is success :1041
+2022-01-04 15:56:21 SERVERTYPE_LOGIN, conn_idx = 4, realm_idx = 1, srv_uid = 1041, area_idx = 1
+2022-01-04 15:56:21 SERVERTYPE_CONNECT, conn_idx = 1, realm_idx = 1, srv_uid = 1021, area_idx = 1
+2022-01-04 15:56:21 SERVERTYPE_WORLD, conn_idx = 2, realm_idx = 1, srv_uid = 1010, area_idx = 0
+2022-01-04 15:56:21 SERVERTYPE_MAP, conn_idx = 3, realm_idx = 1, srv_uid = 1031, area_idx = 1
+2022-01-04 15:56:32 exit success!

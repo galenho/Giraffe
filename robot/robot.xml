@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--(0) LOG_LEVEL_DEBUG, (1) LOG_LEVEL_INFO, (2) LOG_LEVEL_WARN, (3) LOG_LEVEL_ERROR, (4) LOG_LEVEL_FATAL-->
+  <log_level>0</log_level>
+  <ip>127.0.0.1</ip>
+  <port>6100</port>
+  <cases>
+	<case id="1" testName="beside_battle" first_id="1" last_id="1"/>
+  </cases>
+</root>

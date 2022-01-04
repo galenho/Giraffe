@@ -1,0 +1,1 @@
+start "mongo_test" ../crossoverD mongo_test.lua

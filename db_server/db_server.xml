@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+ <realm_idx>1</realm_idx>
+ <ip_for_server>127.0.0.1</ip_for_server>
+ <port_for_server>50001</port_for_server>
+ <gamedb hostname="127.0.0.1" port="27017" username="root" password="88104725galenho" database="gamedb" conn_count="1"></gamedb>
+ <performence_monintor is_connect="0" url="http://127.0.0.1:2100/do" send_interval="5"/>
+</root>
