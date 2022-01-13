@@ -1,1 +1,0 @@
-start "console_test" ../crossover console_test.lua

@@ -1,1 +1,0 @@
-start "timer_test" ../crossover timer_test.lua
