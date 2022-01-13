@@ -61,8 +61,7 @@ CreateCharacterResult =
 	E_CCR_SUCCESS							= 1,	-- 成功					
 	E_CCR_FAILED_CHARCOUNTLIMIT				= 2,	-- 创建人数已经达到上限
 	E_CCR_FAILED_INVALIDPARAM_REPEATED_NAME	= 3,	-- 名字重复
-	E_CCR_FAILED_INTERNALERROR				= 4,	-- 内部错误
-	E_CCR_FAILED_INVALIDPARAM_INVALID_NAME	= 5		-- 名字非法
+	E_CCR_FAILED_INVALIDPARAM_INVALID_NAME	= 4		-- 名字非法
 }
 
 ----------------------------------------------------------------------------------

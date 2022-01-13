@@ -14,7 +14,6 @@ function DBServer:New(o)
     return o
 end
 
-
 function DBServer:RegisterMessage(cmd, handler)
 	if self.handlers_[cmd] then
 		LOG_ERROR("insert failed. cmd:" .. cmd)
@@ -27,10 +26,9 @@ function DBServer:RegisterMessage(cmd, handler)
 end
 
 function DBServer:InitMsgHandle()
-    self:RegisterMessage(ds2ws.RepClientLogin, ds_hander.HandleRepClientLogin)
-    self:RegisterMessage(ds2ws.RepCharacterList, ds_hander.HandleRepCharacterList)
-    self:RegisterMessage(ds2ws.RepCreateCharacter, ds_hander.HandleRepCreateCharacter)
-    self:RegisterMessage(ds2ws.RepDeleteCharacter, ds_hander.HandleRepDeleteCharacter)
+    self:RegisterMessage(ds2ls.RepClientLogin, ds_hander.HandleRepClientLogin)
+    self:RegisterMessage(ds2ls.RepCharacterList, ds_hander.HandleRepCharacterList)
+    self:RegisterMessage(ds2ls.RepCreateCharacter, ds_hander.HandleRepCreateCharacter)
 end
 
 return DBServer

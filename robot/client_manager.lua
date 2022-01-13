@@ -49,7 +49,7 @@ function ClientManager:Init()
 end
 
 function ClientManager:Start()
-	for i=1, 1, 1 do
+	for i=1, 500, 1 do
 		account_idx = i
 		client_session = ClientSession:New()
 		client_session:InitMsgHandle()
@@ -70,7 +70,7 @@ function ClientManager:Connect2Server(ip, port, account_idx)
 	param = {ip = ip, port = port, account_idx = account_idx}
 	global.tcp_client:connect(ip, port, 
 							ClientManager.OnConnCreated, ClientManager.OnConnClosed, ClientManager.OnDataReceived,
-							1024 * 1024 * 4, 4096, true, param)
+							1024 * 1024, 4096, true, param)
 end
 
 function ClientManager:DoConnCreated(conn_idx, is_success, param)

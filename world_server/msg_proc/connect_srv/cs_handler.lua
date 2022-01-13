@@ -8,7 +8,7 @@ CSHandler = {}
 
 function CSHandler.HandleProxyClientMsg(peer, msg)
 
-	client_session = global.client_session_mgr:get_client_session_by_uid(msg.client_uid)
+	client_session = global.client_session_mgr:get_session_by_uid(msg.client_uid)
 	if not client_session then
 		return
 	end

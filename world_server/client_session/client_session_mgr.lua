@@ -18,11 +18,11 @@ function ClientSessionMgr:New(o)
     return o
 end
 
-function ClientSessionMgr:get_client_session_by_uid(client_uid)
+function ClientSessionMgr:get_session_by_uid(client_uid)
 	return self.client_session_map_[client_uid]
 end
 
-function ClientSessionMgr:get_client_session_by_account(account_idx)
+function ClientSessionMgr:get_session_by_account(account_idx)
 	return self.online_account_map_[account_idx]
 end
 

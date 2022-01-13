@@ -63,6 +63,10 @@ function Master.fun_console_callback(cmd)
 	end
 end
 
+function Master.GameLoop(timer_id)
+    
+end
+
 function Master:New(o)
     o = o or {}	
 	self.__index = self
@@ -87,6 +91,10 @@ function Master:Run()
 		
 	LOG_INFO("Init(): robot started")
 	crossover.save_log()
+end
+
+function Master:StartGameLoop()
+    crossover.add_timer(200, Master.GameLoop)
 end
 
 function Master:Stop()

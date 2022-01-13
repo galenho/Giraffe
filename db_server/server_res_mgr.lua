@@ -6,6 +6,26 @@ local global = require "global"
 
 ServerResMgr = {}
 
+function ServerResMgr.HandlePlayerResEnd(is_success, rs, param)
+    --行记录格式: pid, name, account_idx, type_idx, level, last_update_time
+    
+    local player_name_map = global.server_res_mgr.player_name_map_
+    local account_player_map = global.server_res_mgr.account_player_map_
+    
+    for k,v in ipairs(rs) do
+
+        player_name_map[v.name] = v.pid
+        
+        if not account_player_map[v.account_idx] then
+            account_player_map[v.account_idx] = {}
+        end
+        account_player_map[v.account_idx][v.pid] = v
+    end
+    
+    --启动网络
+	global.net_for_server:Start()
+end
+
 function ServerResMgr.HandleReqGetSerialIDEnd(is_success, rs, param)
     
 	if is_success then
@@ -50,7 +70,9 @@ function ServerResMgr:New(o)
 
 	-- 下面写成员变量
 	o.bind_conn_idx_ = 0
-	
+	o.player_name_map_ = {}
+    o.account_player_map_ = {}
+    
     return o
 end
 
@@ -105,15 +127,23 @@ function ServerResMgr:LoadRes()
 	---------------------------------------------------
 end
 
+function ServerResMgr:LoadDBData()
+    global.gamedb:find("player", {}, {pid="true", name="true", account_idx="true", type_idx="true", level="true", last_update_time="true"}, 
+                            ServerResMgr.HandlePlayerResEnd, {}, self:get_bind_conn_idx())
+end
+
 function ServerResMgr:HandleReqGetSerialID(srv_type, srv_uid)
-	global.gamedb:find_and_modify("public_data", {name="serial_idx"}, {["$inc"] = {value = 1}}, ServerResMgr.HandleReqGetSerialIDEnd, {srv_type=srv_type, srv_uid=srv_uid}, self.bind_conn_idx_)
+	global.gamedb:find_and_modify("public_data", {name="serial_idx"}, {["$inc"] = {value = 1}}, 
+                                    ServerResMgr.HandleReqGetSerialIDEnd, {srv_type=srv_type, srv_uid=srv_uid}, self:get_bind_conn_idx())
 end
 
 function ServerResMgr:HandleReqServerRes(table_name, query, field, is_batch, limit, srv_uid)
     if is_batch then --批次查询
-        global.gamedb:find(table_name, query, field, ServerResMgr.HandleReqServerResEnd, {table_name = table_name, srv_uid = srv_uid}, INVALID_INDEX, limit)
+        global.gamedb:find(table_name, query, field, 
+                                ServerResMgr.HandleReqServerResEnd, {table_name = table_name, srv_uid = srv_uid}, INVALID_INDEX, limit)
     else --整表查询
-        global.gamedb:find(table_name, query, field, ServerResMgr.HandleReqServerResEnd, {table_name = table_name, srv_uid = srv_uid}, INVALID_INDEX)
+        global.gamedb:find(table_name, query, field, 
+                                ServerResMgr.HandleReqServerResEnd, {table_name = table_name, srv_uid = srv_uid}, INVALID_INDEX)
     end
 end
 

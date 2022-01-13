@@ -174,15 +174,21 @@ function NetForServer:SendToWS(cmd, data)
 	end
 end
 
+function NetForServer:SendToLS(cmd, data)
+	if self.ls_ then
+		self.ls_:Send(cmd, data)
+	end
+end
+
 function NetForServer:ShowServer()
 	for key, value in pairs(self.app_srv_uid_map_) do
 		peer = value
 		if peer.status_ ~= PeerStatusType.E_PEER_ALREADY_LOGIN then
 
 		else
-			appsrv_name = get_appsrv_name(peer.srv_info_.srv_type);
-			LOG_INFO(appsrv_name .. ", conn_idx = " .. peer.srv_info_.conn_idx .. ", realm_idx = " .. peer.srv_info_.realm_idx ..
-				 ", srv_uid = ".. peer.srv_info_.srv_uid ..", area_idx = " .. peer.srv_info_.area_idx)
+			appsrv_name = get_appsrv_name(peer.srv_info_.srv_type)
+            str = string.format("%20s, conn_idx = %d, realm_idx = %d, srv_uid = %d, area_idx = %d", appsrv_name, peer.srv_info_.conn_idx, peer.srv_info_.realm_idx, peer.srv_info_.srv_uid, peer.srv_info_.area_idx)
+            LOG_INFO(str)
 		end
 	end
 end

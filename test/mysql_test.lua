@@ -57,8 +57,8 @@ function test_query()
 	params = {a=1, b=2}
 	tran_flag = 0
 
-	db:add_query(fun_query_callback, sql, sql_param)
-	db:add_query(fun_query_callback_ex, sql, sql_param, bind_conn_idx, params, tran_flag)
+	db:add_query(sql, fun_query_callback, sql_param)
+	db:add_query(sql, fun_query_callback_ex, sql_param, bind_conn_idx, params, tran_flag)
 	
 end
 

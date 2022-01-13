@@ -2,9 +2,9 @@ local common = require "common"
 local util = require "util"
 local global = require "global"
 
-WSHandler = {}
+LSHandler = {}
 
-function WSHandler.ReqLoginDataEnd(is_success, rs, param)
+function LSHandler.ReqLoginDataEnd(is_success, rs, param)
     rep_msg = {}
     rep_msg.client_uid = param.client_uid
     rep_msg.account_name = param.account_name
@@ -25,82 +25,89 @@ function WSHandler.ReqLoginDataEnd(is_success, rs, param)
 		end
 	end
 	
-    global.net_for_server:SendToWS(ds2ls.RepClientLogin, rep_msg)
+    global.net_for_server:SendToLS(ds2ls.RepClientLogin, rep_msg)
 end
 
-function WSHandler.HandleReqClientLogin(peer, msg)
+function LSHandler.HandleReqClientLogin(peer, msg)
     param = {client_uid = msg.client_uid, account_name = msg.account_name, password = msg.password}
-    global.gamedb:find_one("account_info", {account_name = msg.account_name}, {}, WSHandler.ReqLoginDataEnd, param)
+    global.gamedb:find_one("account_info", {account_name = msg.account_name}, {}, LSHandler.ReqLoginDataEnd, param)
 end
 
 -----------------------------------------------------------------
-function WSHandler.ReqCharacterListEnd(is_success, rs, param)
+function LSHandler.HandleReqCharacterList(peer, msg)
+	local account_player_map = global.server_res_mgr.account_player_map_
 
-	if is_success then
-		rep_msg = {}
-		rep_msg.client_uid = param.client_uid
-		rep_msg.last_login_pid = 0
-		rep_msg.char_data = {}
+    rep_msg = {}
+	rep_msg.client_uid = msg.client_uid
+    rep_msg.char_data = {}
 
-		for i = 1, #rs, 1 do
-			rep_msg.char_data[i] = rs[i]
-			if rs[i].last_update_time > rep_msg.last_login_pid then
-				rep_msg.last_update_time = rs[i].last_update_time
-				rep_msg.last_login_pid = rs[i].pid
-			end
+    if account_player_map[msg.account_idx] then
+
+		for k,v in pairs(account_player_map[msg.account_idx]) do
+            rep_msg.char_data[v.pid] = {}
+            rep_msg.char_data[v.pid].pid = v.pid
+            rep_msg.char_data[v.pid].name = v.name
+            rep_msg.char_data[v.pid].type_idx = v.type_idx
+            rep_msg.char_data[v.pid].level = v.level
+            rep_msg.char_data[v.pid].last_update_time = v.last_update_time
 		end
-		
-		global.net_for_server:SendToWS(ds2ws.RepCharacterList, rep_msg)
-	end
-	
-end
+    end
 
-function WSHandler.HandleReqCharacterList(peer, msg)
-	
-	param = {client_uid = msg.client_uid, account_idx = msg.account_idx}
-    global.gamedb:find("player", {account_idx = msg.account_idx}, 
-							{_id = false, pid = true, name = true, type_idx = true, level = true, last_update_time = true}, 
-							WSHandler.ReqCharacterListEnd, param)
-							
+    global.net_for_server:SendToLS(ds2ls.RepCharacterList, rep_msg)					
 end
 -----------------------------------------------------------------
-function WSHandler.ReqCreateCharacterEnd(is_success, rs, param, msg)
-    
+function LSHandler.ReqCreateCharacterEnd(is_success, rs, param)
     if is_success then
-		if rs.retval == 0 then --创建成功
-			
-		elseif rs.retval == 1 then --已达到最大的角色数量
-			
-		elseif rs.retval == 2 then --角色名重复
-			
-		else --未知错误
-			print("is faile")
-		end
+		
 	else		
-		print("is faile")
+		print("create character is faile")
 	end
-	
 end
 
-function WSHandler.HandleReqCreateCharacter(peer, msg)
-
-	param = {client_uid = msg.client_uid, pid = msg.pid, account_idx = msg.account_idx, type_idx = msg.type_idx}
-	
-	max_char_count = 4
-	create_time = os.time()
-	cmd = "(" .. msg.pid .. ",'" .. msg.name .. "'," .. msg.account_idx .. "," .. msg.type_idx .. "," .. create_time .. ", " .. max_char_count .. ")"
-	
-	t = {eval = cmd}
-	global.gamedb:create(t, WSHandler.ReqCreateCharacterEnd, param, global.server_res_mgr:get_bind_conn_idx())	
-	
-end
------------------------------------------------------------------
-function WSHandler.ReqDeleteCharacterEnd(peer, msg)
+function LSHandler.HandleReqCreateCharacter(peer, msg)
+    --msg: client_uid, account_idx, name, type_idx
+    local player_name_map = global.server_res_mgr.player_name_map_
+    local account_player_count_map = global.server_res_mgr.account_player_map_
     
-end
-
-function WSHandler.HandleReqDeleteCharacter(peer, msg)
+    rep_msg = {}
+	rep_msg.client_uid = param.client_uid
     
+	-- 1. 判断同名
+    if player_name_map[msg.name] then
+        rep_msg.result = CreateCharacterResult.E_CCR_FAILED_INVALIDPARAM_REPEATED_NAME
+        global.net_for_server:SendToLS(ds2ls.RepCreateCharacter, rep_msg)
+        return
+    end
+    
+    -- 2. 判断角色数量
+    max_char_count = 4
+    account_player_map = account_player_count_map[msg.account_idx]
+    if account_player_map then
+        if table_len(account_player_map) >= max_char_count then
+            rep_msg.result = CreateCharacterResult.E_CCR_FAILED_CHARCOUNTLIMIT
+            global.net_for_server:SendToLS(ds2ls.RepCreateCharacter, rep_msg)
+            return
+        end  
+    end
+    
+    -- 3. 创建角色
+    player_data = {pid=msg.pid, name=msg.name, account_idx=msg.account_idx, type_idx=msg.type_idx, level=1, last_update_time = os.time()}
+    player_name_map[msg.name] = msg.pid
+    if not player_name_map[msg.account_idx] then
+        player_name_map[msg.account_idx] = {}
+    end
+
+    player_name_map[msg.account_idx][msg.pid] = player_data    
+    global.gamedb:insert_one("player", player_data, LSHandler.ReqCreateCharacterEnd, {})
+	
+    rep_msg.pid = player_data.pid
+    rep_msg.name = player_data.name
+    rep_msg.account_idx = player_data.account_idx
+    rep_msg.type_idx = player_data.type_idx
+    rep_msg.level = player_data.level
+    rep_msg.last_update_time = player_data.last_update_time
+    rep_msg.result = CreateCharacterResult.E_CCR_SUCCESS
+    global.net_for_server:SendToLS(ds2ls.RepCreateCharacter, rep_msg)
 end
 
-return WSHandler
+return LSHandler

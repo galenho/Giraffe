@@ -5,8 +5,7 @@ local global = require "global"
 ClientHandler = {}
 
 function ClientHandler.HandleRepClientLogin(session, msg)
-	print("HandleRepClientLogin " .. msg.login_result)
-	
+    --print("HandleRepClientLogin")
 	if session:get_status() ~= ClientSession.SS_LOGIN_DOING then
 		return
 	end
@@ -22,13 +21,12 @@ function ClientHandler.HandleRepClientLogin(session, msg)
 end
 
 function ClientHandler.HandleRepCharacterList(session, msg)
-	print("HandleRepCharacterList ")
-	
+    --print("HandleRepCharacterList")
 	if session:get_status() ~= ClientSession.SS_LOGIN_OK then
 		return
 	end
 	
-	if (not msg.char_data) or (#msg.char_data == 0) then
+	if (not msg.char_data) or (table_len(msg.char_data) == 0) then
 		-- 创建一个角色
 		req_msg = {}
 		req_msg.name = "player_" .. session:get_account_idx()
@@ -38,9 +36,24 @@ function ClientHandler.HandleRepCharacterList(session, msg)
 
 	else
 		-- 进入游戏
-		req_msg = {}
-		req_msg.pid = msg.char_data[1].pid
-		session:SendMsg(c2s.C2SReqEnterGame, req_msg)
+        print("realy enter game ---- "..msg.char_data[1].pid)
+		--req_msg = {}
+		--req_msg.pid = msg.char_data[1].pid
+		--session:SendMsg(c2s.C2SReqEnterGame, req_msg)
+	end
+end
+
+function ClientHandler.HandleRepCreateCharacter(session, msg)
+	--print("HandleRepCreateCharacter ")
+	if session:get_status() ~= ClientSession.SS_LOGIN_OK then
+		return
+	end
+	
+	if msg.result == CreateCharacterResult.E_CCR_SUCCESS then
+        -- 进入游戏
+        print("realy enter game ---- "..msg.char_data.pid)
+	else
+		
 	end
 end
 

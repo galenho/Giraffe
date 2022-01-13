@@ -16,12 +16,6 @@ function ClientSessionMgr:New(o)
 	
 	o.accept_session_map_ = {}
 
-	o.accept_kickout_session_ = {}
-	o.ping_kickout_session_ = {}
-	o.offline_kickout_session_ = {}
-
-	o.logout_session_map_ = {}
-	o.waitting_logout_sessions_ = {}
     return o
 end
 
@@ -33,8 +27,15 @@ function ClientSessionMgr:CleanupAcceptSession(conn_idx)
 	self.accept_session_map_[conn_idx] = nil
 end
 
+function ClientSessionMgr:has_accept_session(conn_idx)
+    if self.accept_session_map_[conn_idx] then
+        return true
+    else
+        return false
+    end
+end
+
 function ClientSessionMgr:AddSession(conn_idx)
-	print(conn_idx)
 	session = ClientSession:New()
 	session:Init(conn_idx)
 	
@@ -50,8 +51,7 @@ function ClientSessionMgr:AddSession(conn_idx)
 	
 	self.client_session_by_conn_idx_map_[conn_idx] = session
 	self.client_session_by_uid_map_[session:get_client_uid()] = session
-	
-	
+    
 	return session
 end
 
@@ -61,45 +61,16 @@ function ClientSessionMgr:CleanupSession(conn_idx)
 	self.client_session_by_conn_idx_map_[conn_idx] = nil
 end
 
-function ClientSessionMgr:OnMSClosed(ss_uid)
-	
-end
-
 function ClientSessionMgr:OnWSClosed(ws_uid)
 	
 end
 
 function ClientSessionMgr:CloseAllClient()
-	for key, value in pairs(self.client_session_by_conn_idx_map_) do
-        session = value
-		self.waitting_logout_sessions_[session:get_client_uid()] = session
-    end
-
-	-- 第一次尝试关闭客户端
-	self:TryContinueCloseOtherClient()
-end
-
-function ClientSessionMgr:TryContinueCloseOtherClient()
-	count = #self.logout_session_map_
-	have_session_count = 50 - count
 	
-	for key, value in pairs(self.logout_session_map_) do
-		if have_session_count > 0 then
-			session = value
-			have_session_count = have_session_count - 1
-			self.logout_session_map_[key] = nil
-			
-			self.logout_session_map_[session:get_client_uid()]= session
-			global.net_for_client:DoConnClosed(session:get_conn_idx(), true)
-			global.net_for_client:DisconnectClient(session:get_conn_idx())
-		else
-			break
-		end
-    end
 end
 
 function ClientSessionMgr:get_session_count()
-	return #self.client_session_by_conn_idx_map_
+	return table_len(self.client_session_by_conn_idx_map_)
 end
 
 function ClientSessionMgr:get_session_by_conn_idx(conn_idx)

@@ -3,8 +3,7 @@ local global = require "global"
 
 ClientSession = {}
 
--- 未创建
-ClientSession.SS_NONE					= 0
+
 -- 刚创建
 ClientSession.SS_CREATED				= 1
 -- 登录中

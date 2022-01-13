@@ -70,54 +70,8 @@ function NetForClient:DoConnClosed(conn_idx, is_kickout)
 
 	session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
 	if session then
-		session:set_offline_time(now_time)
-		src_status = session:get_status()
-
-		-----------------------------------------------------------------------------------
-		if src_status == ClientSession.SS_LOGOUT then
-			return
-		end
-
-		if src_status == ClientSession.SS_TRANSFERING then --等传送完后再处理LOGOUT, 而且这里is_kickout = false也作强行退出
-			session.is_transfer_delay_logout_ = true
-			return
-		end
-
-		if is_kickout then
-			session:set_status(ClientSession.SS_LOGOUT) --截杀所有回来的消息
-		else
-			if src_status == ClientSession.SS_OFFLINEING then
-				return
-			else
-				session:set_status(ClientSession.SS_OFFLINEING)
-			end
-		end
-		----------------------------------------------------------------------------
-
-		if src_status == ClientSession.SS_CREATED then
-			-- 清除连接
-			global.client_session_mgr:CleanupSession(session:get_conn_idx())
-
-		elseif src_status == ClientSession.SS_LOGIN_DOING or src_status == ClientSession.SS_LOGIN_OK then
-			-- 说明有可能已经发送给ws去验证了, 即可能在ws上已经创建了Session, 这时候要强制清除
-			req_msg = {}
-			req_msg.client_uid = session:get_client_uid()
-			global.connect_server:SendToWS(cs2ws.ReqClientLogOut, req_msg)
-			
-			-- 清除连接
-			global.client_session_mgr:CleanupSession(session:get_conn_idx())
-			
-		elseif ClientSession.SS_REQUEST_CHARINFO or ClientSession.SS_REQUEST_CREATE_PLAYER then
-			session:set_status(ClientSession.SS_LOGOUT)
-
-		elseif ClientSession.SS_INGAME or ClientSession.SS_OFFLINEING then
-			req_msg = {}
-			req_msg.client_uid = session:get_client_uid()
-			req_msg.is_kickout = is_kickout;
-			session:SendToMS(cs2ms.ReqClientLogOut, req_msg)
-		else
-			LOG_ERROR("client_session status is fail")
-		end
+		-- 清除连接
+		global.client_session_mgr:CleanupSession(session:get_conn_idx())
 	end
 end
 

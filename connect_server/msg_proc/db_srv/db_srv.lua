@@ -14,7 +14,6 @@ function DBServer:New(o)
     return o
 end
 
-
 function DBServer:RegisterMessage(cmd, handler)
 	if self.handlers_[cmd] then
 		LOG_ERROR("insert failed. cmd:" .. cmd)

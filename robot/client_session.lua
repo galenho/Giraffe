@@ -12,20 +12,14 @@ require "netdefines"
 
 ClientSession = {}
 
-
--- 未创建
-ClientSession.SS_NONE					= 0
 -- 刚创建
 ClientSession.SS_CREATED				= 1
-
-ClientSession.SS_CONN_CSM				= 2
-
-ClientSession.SS_INIT_CS_INFO			= 3
-
 -- 登录中
-ClientSession.SS_LOGIN_DOING			= 4
+ClientSession.SS_LOGIN_DOING			= 2
 -- 登录成功
-ClientSession.SS_LOGIN_OK				= 5
+ClientSession.SS_LOGIN_OK				= 3
+
+
 -- 获取player角色信息
 ClientSession.SS_REQUEST_CHARINFO		= 6
 -- 已进入MS，游戏中
@@ -77,7 +71,6 @@ function ClientSession:DoConnCreated()
 	data = { account_name = self.account_name_, password = self.password_ }
 	self:set_status(ClientSession.SS_LOGIN_DOING)
 	
-    print("c2s.C2SReqClientLogin")
 	self:SendMsg(c2s.C2SReqClientLogin, data)
 end
 

@@ -1,5 +1,5 @@
 local Peer = require "peer"
-local ws_hander = require "msg_proc.world_srv.ws_handler"
+local ls_hander = require "msg_proc.login_srv.ls_handler"
 local util = require "util"
 
 WorldServer = Peer:New()
@@ -27,9 +27,9 @@ function WorldServer:RegisterMessage(cmd, handler)
 end
 
 function WorldServer:InitMsgHandle()	
-	self:RegisterMessage(ws2ds.ReqClientLogin, ws_hander.HandleReqClientLogin)
-    self:RegisterMessage(ws2ds.ReqCreateCharacter, ws_hander.HandleReqCreateCharacter)
-    self:RegisterMessage(ws2ds.ReqDeleteCharacter, ws_hander.HandleReqDeleteCharacter)
+	self:RegisterMessage(ls2ds.ReqClientLogin,     ls_hander.HandleReqClientLogin)
+    self:RegisterMessage(ls2ds.ReqCharacterList,   ls_hander.HandleReqCharacterList)
+    self:RegisterMessage(ls2ds.ReqCreateCharacter, ls_hander.HandleReqCreateCharacter)
 end
 
 return WorldServer

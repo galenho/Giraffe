@@ -15,6 +15,7 @@ function ServerResMgr:New(o)
 	-- 下面写成员变量
 	o.serial_idx_ = 0
 	o.req_table_cmds_ = List.new()
+    o.character_serial_idx_ = 0
     
     return o
 end
@@ -172,15 +173,13 @@ end
 
 function ServerResMgr:LoadDBData()
 
-    self:PushTableData("player", {}, true, "pid", 1000)
-    
     self:StartQueryTableData()
     
 end
 
 function ServerResMgr:LoadDBDataEnd()
     LOG_INFO("LoadDBDataEnd finish")
-    
+    global.master:StartGameLoop()
     global.net_for_client:Start()
 end
 
@@ -190,6 +189,11 @@ end
 
 function ServerResMgr:get_serial_idx()
 	return self.serial_idx_
+end
+
+function ServerResMgr:MakeCharacterGeneralID()
+	self.character_serial_idx_ = self.character_serial_idx_ + 1
+	return GenerateObjID(self.serial_idx_, self.character_serial_idx_);
 end
 
 return ServerResMgr

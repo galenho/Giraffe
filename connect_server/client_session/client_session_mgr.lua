@@ -51,7 +51,6 @@ function ClientSessionMgr:AddSession(conn_idx)
 	self.client_session_by_conn_idx_map_[conn_idx] = session
 	self.client_session_by_uid_map_[session:get_client_uid()] = session
 	
-	
 	return session
 end
 
@@ -99,7 +98,7 @@ function ClientSessionMgr:TryContinueCloseOtherClient()
 end
 
 function ClientSessionMgr:get_session_count()
-	return #self.client_session_by_conn_idx_map_
+	return table_len(self.client_session_by_conn_idx_map_)
 end
 
 function ClientSessionMgr:get_session_by_conn_idx(conn_idx)

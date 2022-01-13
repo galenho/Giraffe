@@ -4,8 +4,8 @@ ls2ds_array = {}
 
 ls2ds = {
 	ReqClientLogin						= 30001,	-- 请求登录
-	ReqClientLogOut						= 30002,	-- 请求登出
-	ProxyClientMsg						= 30003,    -- 代理发送客户端消息
+    ReqCharacterList                    = 30002,    -- 请求角色列表
+	ReqCreateCharacter					= 30003,	-- 创建角色
 }
 
 for k, v in pairs(ls2ds) do

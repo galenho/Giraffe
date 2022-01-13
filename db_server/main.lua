@@ -11,7 +11,7 @@ package.cpath = package.cpath..";../?.dll"
 local global = require "global"
 local Master = require "master"
 
-function Main()
+function Main() 
 	global.master = Master:New()
 	global.master:Run()
 end

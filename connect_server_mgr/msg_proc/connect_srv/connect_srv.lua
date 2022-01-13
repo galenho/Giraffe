@@ -1,4 +1,5 @@
 local Peer = require "peer"
+local cs_hander = require "msg_proc.connect_srv.cs_handler"
 
 ConnectServer = Peer:New()
 
@@ -13,8 +14,19 @@ function ConnectServer:New(o)
     return o
 end
 
+function ConnectServer:RegisterMessage(cmd, handler)
+	if self.handlers_[cmd] then
+		LOG_ERROR("insert failed. cmd:" .. cmd)
+		return false
+	end
+
+	self.handlers_[cmd] = handler
+
+	return true
+end
+
 function ConnectServer:InitMsgHandle()
-    
+        
 end
 
 return ConnectServer

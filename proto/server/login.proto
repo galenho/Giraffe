@@ -17,6 +17,11 @@ message LoginShowInfo
 
 message S2CRepCharacterList 
 {
-    optional uint64 last_login_pid = 1;
-	repeated LoginShowInfo char_data	= 2;
+	repeated LoginShowInfo char_data	= 1;
+}
+
+message S2CRepCreateCharacter 
+{
+	optional int32 result				= 1;
+    optional LoginShowInfo char_data	= 2;
 }

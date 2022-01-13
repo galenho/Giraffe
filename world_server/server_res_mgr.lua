@@ -14,7 +14,6 @@ function ServerResMgr:New(o)
 
 	-- 下面写成员变量
 	o.serial_idx_ = 0
-	o.character_serial_idx_ = 0
     o.req_table_cmds_ = List.new()
     return o
 end
@@ -156,11 +155,6 @@ end
 
 function ServerResMgr:get_serial_idx()
 	return self.serial_idx_
-end
-
-function ServerResMgr:MakeCharacterGeneralID()
-	self.character_serial_idx_ = self.character_serial_idx_ + 1
-	return GenerateObjID(self.serial_idx_, self.character_serial_idx_);
 end
 
 return ServerResMgr

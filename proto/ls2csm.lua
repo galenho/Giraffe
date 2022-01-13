@@ -2,9 +2,7 @@ ls2csm = {}
 ls2csm_array = {}
 
 ls2csm = {
-	ReqClientLogin						= 50001,	-- 请求登录
-	ReqClientLogOut						= 50002,	-- 请求登出
-	ProxyClientMsg						= 50003,    -- 代理发送客户端消息
+	ReqCreateSession					= 50001,	-- 请求创建玩家会话
 }
 
 for k, v in pairs(ls2csm) do

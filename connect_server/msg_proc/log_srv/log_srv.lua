@@ -13,6 +13,17 @@ function LogServer:New(o)
     return o
 end
 
+function LogServer:RegisterMessage(cmd, handler)
+	if self.handlers_[cmd] then
+		LOG_ERROR("insert failed. cmd:" .. cmd)
+		return false
+	end
+
+	self.handlers_[cmd] = handler
+
+	return true
+end
+
 function LogServer:InitMsgHandle()
     
 end
