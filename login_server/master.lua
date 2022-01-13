@@ -49,19 +49,6 @@ end
 
 function Master.fun_stop_callback(timer_id)
 	LOG_INFO("waitting for stop...")
-	------------------------------------------------------------------------
-	-- 一次50个ClientSession慢慢退, 以防止缓冲区溢出
-	------------------------------------------------------------------------
-	global.client_session_mgr:TryContinueCloseOtherClient()
-	
-	------------------------------------------------------------------------
-	-- 需要延迟等待退出的ClientSession全部退出
-	------------------------------------------------------------------------
-	session_count = global.client_session_mgr:get_session_count()
-	if session_count > 0 then
-		LOG_INFO("waiting for all client session (" .. session_count .. ") logout.")
-		return
-	end
 	
 	------------------------------------------------------------------------
 	-- 断开网络
