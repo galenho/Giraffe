@@ -55,7 +55,7 @@
                 <LuaFile RelativePath=".\net_for_server.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\login_server" Toggle="false" >
+        <Filter RelativePath=".\login_server" Toggle="true" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
@@ -120,7 +120,7 @@
                 <LuaFile RelativePath=".\luaxml.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\connect_server" Toggle="false" >
+        <Filter RelativePath=".\connect_server" Toggle="true" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
@@ -200,7 +200,7 @@
                 <LuaFile RelativePath=".\world_object.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\connect_server_mgr" Toggle="false" >
+        <Filter RelativePath=".\connect_server_mgr" Toggle="true" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
