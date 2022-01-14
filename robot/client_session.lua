@@ -19,17 +19,62 @@ ClientSession.SS_LOGIN_DOING			= 2
 -- 登录成功
 ClientSession.SS_LOGIN_OK				= 3
 
-
 -- 获取player角色信息
-ClientSession.SS_REQUEST_CHARINFO		= 6
+ClientSession.SS_REQUEST_CHARINFO		= 4
 -- 已进入MS，游戏中
-ClientSession.SS_INGAME					= 7
+ClientSession.SS_INGAME					= 5
 -- 传送中
-ClientSession.SS_TRANSFERING			= 8
+ClientSession.SS_TRANSFERING			= 6
 -- 登出中
-ClientSession.SS_LOGOUT					= 9
+ClientSession.SS_LOGOUT					= 7
 -- 断线中
-ClientSession.SS_OFFLINEING				= 10
+ClientSession.SS_OFFLINEING				= 8
+
+
+---------------------------------------------------------------------------------------------------------------------------
+-- 模块函数
+---------------------------------------------------------------------------------------------------------------------------
+function ClientSession.OnConnCreated(conn_idx, is_success, param)
+    client_session = global.client_manager.client_session_map_[param.account_idx]
+	
+	if is_success then
+		client_session.conn_idx_ = conn_idx
+		global.client_manager.client_conn_map_[conn_idx] = client_session
+		client_session:DoConnCreated()
+	else --不成功，进行重连
+		crossover.add_timer(RETRY_CONNECT_INTERVAL, ClientManager.RetryConnect, param)
+	end
+end
+
+function ClientSession.OnConnClosed(conn_idx)
+    client_session = global.client_manager.client_conn_map_[conn_idx]
+	client_session:DoConnClosed()
+	global.client_manager.client_conn_map_[conn_idx] = nil
+end
+
+function ClientSession.OnDataReceived(conn_idx, data, len)
+
+    client_session = global.client_manager.client_conn_map_[conn_idx]
+	cmd = GetCmd(data)
+	cmd_name = s2c_array[cmd]
+	msg = pb.decode_cmd(cmd_name, data)
+	msg.cmd = cmd
+
+	client_session:HandleMsg(msg)
+end
+
+function ClientSession.Connect2Server(ip, port, account_idx)
+	param = {ip = ip, port = port, account_idx = account_idx}
+	global.tcp_client:connect(ip, port, 
+							ClientSession.OnConnCreated, ClientSession.OnConnClosed, ClientSession.OnDataReceived,
+							1024 * 8, 4096, true, param)
+end
+
+function ClientSession.RetryConnect(timer_id, param)
+	crossover.remove_timer(timer_id)
+	ClientSession.Connect2Server(param.ip, param.port, param.account_idx);
+end
+
 
 ---------------------------------------------------------------------------------------------------------------------------
 -- 对象函数
@@ -43,7 +88,7 @@ function ClientSession:New(o)
 	o.account_idx_ = 0
 	o.account_name_ = ""
 	o.password_ = ""
-	o.conn_idx_ = 0
+	o.conn_idx_ = INVALID_INDEX
 	o.handlers_ = {}
 	o.status_ = ClientSession.SS_CREATED
 	
@@ -66,6 +111,11 @@ function ClientSession:InitMsgHandle()
     self:RegisterMessage(s2c.S2CRepCharacterList, client_handler.HandleRepCharacterList)
     self:RegisterMessage(s2c.S2CRepCreateCharacter, client_handler.HandleRepCreateCharacter)
 end
+
+function ClientSession:Start()
+    ClientSession.Connect2Server(global.config.ip, global.config.port, self.account_idx_)
+end
+
 
 function ClientSession:DoConnCreated()
 	data = { account_name = self.account_name_, password = self.password_ }
@@ -96,6 +146,11 @@ function ClientSession:SendMsg(cmd, data)
 	end
 end
 
+function ClientSession:Disconnect()
+	global.tcp_client:disconnect(self.conn_idx_)
+    self.conn_idx_ = INVALID_INDEX
+end
+
 function ClientSession:get_status()
 	return self.status_
 end
@@ -111,6 +166,10 @@ end
 
 function ClientSession:set_account_name(account_name)
 	self.account_name_ = account_name
+end
+
+function ClientSession:set_account_idx(account_idx)
+	self.account_idx_ = account_idx
 end
 
 function ClientSession:get_account_idx()

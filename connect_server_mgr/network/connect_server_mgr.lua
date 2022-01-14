@@ -140,7 +140,7 @@ end
 
 function ConnectServerMgr:DoDataReceived(conn_idx, data, len)
 	msg = seri.unpack(data, len)
-	
+
 	peer = self.app_srv_conn_map_[conn_idx]
 	if peer == nil then
 		return

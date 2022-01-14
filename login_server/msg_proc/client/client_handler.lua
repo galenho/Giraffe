@@ -11,7 +11,7 @@ function ClientHandler.HandleReqClientLogin(conn_idx, msg)
         session = global.client_session_mgr:AddSession(conn_idx)
     end
     
-    if session:get_status() ~= ClientSession.SS_CREATED and session:get_status() ~= ClientSession.SS_LOGIN_DOING then
+    if session:get_status() ~= ClientSession.SS_CREATED then
         return
     end
     

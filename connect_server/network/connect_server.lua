@@ -48,6 +48,7 @@ function ConnectServer:New(o)
 	o.ws_ = nil
 	o.ds_ = nil
     o.log_ = nil
+    o.csmgr_ = nil
     
     return o
 end
@@ -251,6 +252,9 @@ function ConnectServer:OnAppSrvEnter(peer)
 		
 	elseif peer.srv_info_.srv_type == ServerType.SERVERTYPE_LOG then
 		self.log_ = peer
+    elseif peer.srv_info_.srv_type == ServerType.SERVERTYPE_CSM then
+		self.csmgr_ = peer
+        self:NoticeCSMgrInfo()
 	else
 		
 	end
@@ -268,6 +272,20 @@ function ConnectServer:SendToDS(cmd, msg)
 	end
 end
 
+function ConnectServer:SendToCSM(cmd, msg)
+	if self.csmgr_ then
+		self.csmgr_:Send(cmd, msg)
+	end
+end
+
+function ConnectServer:NoticeCSMgrInfo()
+	notify_msg = {}
+	notify_msg.ip = global.config.ip_for_client 
+	notify_msg.port = global.config.port_for_client
+	notify_msg.player_amount = global.client_session_mgr:get_session_count()
+	notify_msg.area_idx = global.config.area_idx
+	self:SendToCSM(cs2csm.NotifyCsInfo, notify_msg)
+end
 
 function ConnectServer:ShowServer()
 	for key, value in pairs(self.app_srv_uid_map_) do

@@ -266,6 +266,12 @@ function LoginServer:SendToDS(cmd, msg)
 	end
 end
 
+function LoginServer:SendToCSM(cmd, msg)
+	if self.csmgr_ then
+		self.csmgr_:Send(cmd, msg)
+	end
+end
+
 function LoginServer:ShowServer()
 	for key, value in pairs(self.app_srv_uid_map_) do
 		peer = value

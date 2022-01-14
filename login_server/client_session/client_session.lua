@@ -10,18 +10,9 @@ ClientSession.SS_CREATED				= 1
 ClientSession.SS_LOGIN_DOING			= 2
 -- 登录成功
 ClientSession.SS_LOGIN_OK				= 3
--- 获取player角色信息
-ClientSession.SS_REQUEST_CHARINFO		= 4
--- 请求创建角色
-ClientSession.SS_REQUEST_CREATE_PLAYER	= 5
--- 已进入MS，游戏中
-ClientSession.SS_INGAME					= 6
--- 传送中
-ClientSession.SS_TRANSFERING			= 7
 -- 登出中
-ClientSession.SS_LOGOUT					= 8
--- 断线中
-ClientSession.SS_OFFLINEING				= 9
+ClientSession.SS_LOGOUT					= 4
+
 
 function ClientSession:New(o, conn_idx)
     o = o or {}	

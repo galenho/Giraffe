@@ -26,7 +26,7 @@ function ConnectServer:RegisterMessage(cmd, handler)
 end
 
 function ConnectServer:InitMsgHandle()
-        
+    self:RegisterMessage(cs2csm.NotifyCsInfo, cs_hander.HandleNotifyCsInfo)
 end
 
 return ConnectServer

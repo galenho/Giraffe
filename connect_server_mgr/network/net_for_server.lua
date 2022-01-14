@@ -70,7 +70,7 @@ end
 function NetForServer:DoDataReceived(conn_idx, data, len)
 	msg = seri.unpack(data, len)
 	peer = self.app_srv_conn_map_[conn_idx]
-	
+    
 	if msg.cmd == internal.ReqLogin then
 		if not peer then
 			peer = self:CreatePeer(msg.srv_info.srv_type)
@@ -110,7 +110,7 @@ function NetForServer:DoDataReceived(conn_idx, data, len)
 		elseif msg.cmd == internal.AppServerRemove then
 		
 		else --∆’Õ®œ˚œ¢
-		
+            peer:HandleMsg(conn_idx, msg)
 		end
 	end
 end
