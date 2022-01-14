@@ -4,12 +4,16 @@ local global = require "global"
 
 ClientHandler = {}
 
-function ClientHandler.HandleReqEnterGame(session, msg)
-    -- 只有登陆成功, 才允许请求玩家数据
-	if session:get_status() ~= ClientSession.SS_LOGIN_OK and session:get_status() ~= ClientSession.SS_INGAME then
-		return
-	end
+function ClientHandler.HandleReqEnterGame(conn_idx, msg)
+    session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
+    if session then
+        return
+    end
+    
+    session = global.client_session_mgr:AddSession(conn_idx)
 
+    -- 发SessionKey到csmgr到验证
+    
 	req_msg = {}
 	req_msg.client_uid = session:get_client_uid()
 	req_msg.account_idx = session:get_account_idx()

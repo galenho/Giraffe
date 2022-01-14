@@ -3,7 +3,9 @@ import "common.proto";
 message S2CRepClientLogin 
 {
     optional int32 login_result = 1;
-    optional int32 account_idx = 2;
+    optional int32 account_idx	= 2;
+	optional string ip			= 3;
+	optional int32  port		= 4;
 }
 
 message LoginShowInfo 

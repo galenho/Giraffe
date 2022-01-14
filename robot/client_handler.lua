@@ -13,11 +13,13 @@ function ClientHandler.HandleRepClientLogin(session, msg)
     if msg.login_result == LoginResult.E_LR_SUCCESS then
         session:set_account_idx(msg.account_idx)
 		session:set_status(ClientSession.SS_LOGIN_OK)
-		
+		session.ip_for_cs_ = msg.ip
+        session.port_for_cs_ = msg.port
+    
 		-- 请求角色列表
 		session:SendMsg(c2s.C2SReqCharacterList, {})
 	else
-		
+		print("Login Faile")
 	end
 end
 
@@ -36,16 +38,11 @@ function ClientHandler.HandleRepCharacterList(session, msg)
 		session:SendMsg(c2s.C2SReqCreateCharacter, req_msg)
 	else
 		-- 进入游戏
-        print("realy enter game ---- "..msg.char_data[1].pid)
+        print("Realy enter game ---- "..msg.char_data[1].pid)
         
-        session:set_status(ClientSession.SS_REQUEST_CHARINFO)
+        session:set_status(ClientSession.SS_INIT_CS_INFO)
         session:Disconnect()
-        
-		--req_msg = {}
-		--req_msg.pid = msg.char_data[1].pid
-		--session:SendMsg(c2s.C2SReqEnterGame, req_msg)
-        
-        
+        ClientSession.Connect2Server(session.ip_for_cs_, session.port_for_cs_, session:get_account_idx())
 	end
 end
 
@@ -57,7 +54,11 @@ function ClientHandler.HandleRepCreateCharacter(session, msg)
 	
 	if msg.result == CreateCharacterResult.E_CCR_SUCCESS then
         -- 进入游戏
-        print("realy enter game ---- "..msg.char_data.pid)
+        print("Realy enter game ---- "..msg.char_data.pid)
+        
+        session:set_status(ClientSession.SS_INIT_CS_INFO)
+        session:Disconnect()
+        ClientSession.Connect2Server(session.ip_for_cs_, session.port_for_cs_, session:get_account_idx())
 	else
 		
 	end

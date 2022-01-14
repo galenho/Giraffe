@@ -26,7 +26,7 @@ function ServerResMgr:LoadRes()
 	--dump(xml_config)
 	
 	success, log_level_emt = luaxml.find_node(xml_config, "log_level")
-	global.config.log_level = log_level_emt[1]
+	global.config.log_level = tonumber(log_level_emt[1])
 	
 	success, ip_emt = luaxml.find_node(xml_config, "ip")
 	global.config.ip = ip_emt[1]

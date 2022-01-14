@@ -3,26 +3,20 @@ local global = require "global"
 
 ClientSession = {}
 
--- 未创建
-ClientSession.SS_NONE					= 0
 -- 刚创建
 ClientSession.SS_CREATED				= 1
--- 登录中
-ClientSession.SS_LOGIN_DOING			= 2
--- 登录成功
-ClientSession.SS_LOGIN_OK				= 3
 -- 获取player角色信息
-ClientSession.SS_REQUEST_CHARINFO		= 4
+ClientSession.SS_REQUEST_CHARINFO		= 2
 -- 请求创建角色
-ClientSession.SS_REQUEST_CREATE_PLAYER	= 5
+ClientSession.SS_REQUEST_CREATE_PLAYER	= 3
 -- 已进入MS，游戏中
-ClientSession.SS_INGAME					= 6
+ClientSession.SS_INGAME					= 4
 -- 传送中
-ClientSession.SS_TRANSFERING			= 7
+ClientSession.SS_TRANSFERING			= 5
 -- 登出中
-ClientSession.SS_LOGOUT					= 8
+ClientSession.SS_LOGOUT					= 6
 -- 断线中
-ClientSession.SS_OFFLINEING				= 9
+ClientSession.SS_OFFLINEING				= 7
 
 function ClientSession:New(o, conn_idx)
     o = o or {}	

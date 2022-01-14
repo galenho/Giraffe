@@ -28,10 +28,10 @@ function ServerResMgr:LoadRes()
 	--dump(xml_config)
 	
 	success, log_level_emt = luaxml.find_node(xml_config, "log_level")
-	global.config.log_level = log_level_emt[1]
+	global.config.log_level = tonumber(log_level_emt[1])
 	
 	success, realm_idx_emt = luaxml.find_node(xml_config, "realm_idx")
-	global.config.realm_idx = realm_idx_emt[1]
+	global.config.realm_idx = tonumber(realm_idx_emt[1])
 	
 	success, ip_for_server_emt = luaxml.find_node(xml_config, "ip_for_server")
 	global.config.ip_for_server = ip_for_server_emt[1]

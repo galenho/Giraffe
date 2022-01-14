@@ -51,7 +51,9 @@ function ClientMsgProcHandler:OnNetworkClient(conn_idx, msg)
 
     session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
 
-    if self.handlers_[cmd] then
+    if self.handlers_[cmd]== c2s.C2SReqEnterGame then
+        client_hander.HandleReqEnterGame(conn_idx, msg)
+    elseif self.handlers_[cmd] then
         self.handlers_[cmd](session, msg)
     else
         LOG_ERROR("recv invalid msg idx:" .. msg.cmd)

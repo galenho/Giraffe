@@ -22,6 +22,24 @@ function LSHandler.MakeSessionKey(account_idx)
     end 
 end
 
+function LSHandler.GetGoodCs()
+    local conn_srv_area_map = global.conn_srv_area_map
+    min_player_count = 999999999
+    min_area_id = 0
+    for k,v in ipairs(conn_srv_area_map) do
+        if v.player_amount < min_player_count then
+            min_player_count = v.player_amount
+            min_area_id = k
+        end
+    end
+    
+    if min_area_id > 0 then
+        return conn_srv_area_map[min_area_id]
+    else
+        return conn_srv_area_map[1]
+    end
+end
+
 function LSHandler.HandleReqCreateSession(peer, msg)
     --msg.client_uid
     --msg.account_idx
@@ -31,6 +49,9 @@ function LSHandler.HandleReqCreateSession(peer, msg)
     rep_msg.client_uid = msg.client_uid
     rep_msg.account_idx = msg.account_idx
     rep_msg.session_key = LSHandler.MakeSessionKey(msg.account_idx)
+    good_cs = LSHandler.GetGoodCs()
+    rep_msg.ip = good_cs.ip
+    rep_msg.port = good_cs.port
     peer:Send(csm2ls.RepCreateSession, rep_msg)
 end
 
