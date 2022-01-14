@@ -3,9 +3,7 @@ csm2cs = {}
 csm2cs_array = {}
 
 csm2cs = {
-	ReqClientLogin						= 80001,	-- 请求登录
-	ReqClientLogOut						= 80002,	-- 请求登出
-	ProxyClientMsg						= 80003,    -- 代理发送客户端消息
+	RepEnterGame					= 80001,	-- 回复客户端请求进入游戏
 }
 
 for k, v in pairs(csm2cs) do

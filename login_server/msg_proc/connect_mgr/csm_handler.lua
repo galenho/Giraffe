@@ -20,8 +20,8 @@ function CSMHandler.HandleRepCreateSession(peer, msg)
     rep_msg.login_result = LoginResult.E_LR_SUCCESS
     rep_msg.account_idx = msg.account_idx
     rep_msg.ip = msg.ip
-    rep_msg.port = msg.port    
-    dump(rep_msg)
+    rep_msg.port = msg.port
+    rep_msg.session_key = msg.session_key
     session:SendMsg(s2c.S2CRepClientLogin, rep_msg)
 end
 

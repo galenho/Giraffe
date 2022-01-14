@@ -5,6 +5,7 @@ local global = require "global"
 ClientHandler = {}
 
 function ClientHandler.HandleRepClientLogin(session, msg)
+    
     print("HandleRepClientLogin")
 	if session:get_status() ~= ClientSession.SS_LOGIN_DOING then
 		return
@@ -15,7 +16,8 @@ function ClientHandler.HandleRepClientLogin(session, msg)
 		session:set_status(ClientSession.SS_LOGIN_OK)
 		session.ip_for_cs_ = msg.ip
         session.port_for_cs_ = msg.port
-    
+        session.session_key_ = msg.session_key
+        
 		-- 请求角色列表
 		session:SendMsg(c2s.C2SReqCharacterList, {})
 	else
@@ -39,7 +41,7 @@ function ClientHandler.HandleRepCharacterList(session, msg)
 	else
 		-- 进入游戏
         print("Realy enter game ---- "..msg.char_data[1].pid)
-        
+        session.pid_ = msg.char_data[1].pid
         session:set_status(ClientSession.SS_INIT_CS_INFO)
         session:Disconnect()
         ClientSession.Connect2Server(session.ip_for_cs_, session.port_for_cs_, session:get_account_idx())
@@ -63,5 +65,21 @@ function ClientHandler.HandleRepCreateCharacter(session, msg)
 		
 	end
 end
+
+function ClientHandler.HandleRepEnterGame(session, msg)
+	print("HandleRepEnterGame ")
+	if session:get_status() ~= ClientSession.SS_ENTER_GAMEING then
+		return
+	end
+	
+	if msg.result then
+        -- 进入游戏
+        print("enter game success ---- "..msg.pid)
+        session:set_status(ClientSession.SS_INGAME)
+	else
+		
+	end
+end
+
 
 return ClientHandler

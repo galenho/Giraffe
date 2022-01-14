@@ -5,22 +5,24 @@ local global = require "global"
 ClientHandler = {}
 
 function ClientHandler.HandleReqEnterGame(conn_idx, msg)
+
     session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
     if session then
         return
     end
     
     session = global.client_session_mgr:AddSession(conn_idx)
-
-    -- 发SessionKey到csmgr到验证
+    session:set_status(ClientSession.SS_REQUEST_CHARINFO)
+    session:set_account_idx(msg.account_idx)
     
+    -- 发SessionKey到csmgr到验证    
 	req_msg = {}
 	req_msg.client_uid = session:get_client_uid()
 	req_msg.account_idx = session:get_account_idx()
 	req_msg.pid = msg.pid
-	global.connect_server:SendToDS(cs2ds.ReqCharacterData, req_msg)
-	
-	session:set_status(ClientSession.SS_REQUEST_CHARINFO)
+    req_msg.session_key = msg.session_key
+
+	global.connect_server:SendToCSM(cs2csm.ReqEnterGame, req_msg)
 end
 
 function ClientHandler.HandleProxyMsgToWS(session, msg)

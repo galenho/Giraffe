@@ -20,10 +20,12 @@ message C2SReqCreateCharacter
 
 message C2SReqDeleteCharacter
 {
-	optional uint64 pid = 1;
+	optional int64 pid = 1;
 }
 
 message C2SReqEnterGame
 {
-	optional uint64 pid = 1;
+	optional int64 pid = 1;
+	optional int64 account_idx = 2;
+	optional string session_key = 3;
 }

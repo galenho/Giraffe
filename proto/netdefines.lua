@@ -27,6 +27,7 @@ s2c = {
     S2CRepClientLogin 	    = 20001,
     S2CRepCharacterList     = 20002,
 	S2CRepCreateCharacter   = 20003,
+    S2CRepEnterGame         = 20004,
 }
 
 for k, v in pairs(s2c) do

@@ -27,6 +27,7 @@ end
 
 function ConnectServer:InitMsgHandle()
     self:RegisterMessage(cs2csm.NotifyCsInfo, cs_hander.HandleNotifyCsInfo)
+    self:RegisterMessage(cs2csm.ReqEnterGame, cs_hander.HandleReqEnterGame)
 end
 
 return ConnectServer

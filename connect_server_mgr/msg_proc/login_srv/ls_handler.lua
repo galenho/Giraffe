@@ -33,16 +33,10 @@ function LSHandler.GetGoodCs()
         end
     end
     
-    if min_area_id > 0 then
-        return conn_srv_area_map[min_area_id]
-    else
-        return conn_srv_area_map[1]
-    end
+    return conn_srv_area_map[min_area_id]
 end
 
 function LSHandler.HandleReqCreateSession(peer, msg)
-    --msg.client_uid
-    --msg.account_idx
     local session_key_map = global.session_key_map
     
     rep_msg = {}

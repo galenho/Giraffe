@@ -28,11 +28,10 @@ end
 
 function ClientMsgProcHandler:InitMsgHandle()
     ----------------------------------------------------------------------
-    -- cs
+    -- client
     ----------------------------------------------------------------------
-    self:RegisterMessage(c2s.C2SReqEnterGame, client_hander.HandleReqEnterGame)
-    --self:RegisterMessage(c2s.C2SReqClientPing, client_hander.HandleReqClientPing)
-    --self:RegisterMessage(c2s.C2SReqTransfer, client_hander.HandleReqEnterGame)
+    --self:RegisterMessage(c2s.C2SReqPing, client_hander.HandleReqPing)
+    --self:RegisterMessage(c2s.C2SReqTransfer, client_hander.HandleReqTransfer)
 
     ----------------------------------------------------------------------
     -- ws
@@ -47,14 +46,15 @@ function ClientMsgProcHandler:InitMsgHandle()
 end
 
 function ClientMsgProcHandler:OnNetworkClient(conn_idx, msg)
-    --dump(msg)
+    if cmd == c2s.C2SReqEnterGame then
 
-    session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
-
-    if self.handlers_[cmd]== c2s.C2SReqEnterGame then
         client_hander.HandleReqEnterGame(conn_idx, msg)
+        
     elseif self.handlers_[cmd] then
+
+        session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
         self.handlers_[cmd](session, msg)
+
     else
         LOG_ERROR("recv invalid msg idx:" .. msg.cmd)
     end

@@ -15,6 +15,7 @@ function ConnectServerMgr:New(o)
 end
 
 function ConnectServerMgr:RegisterMessage(cmd, handler)
+    
 	if self.handlers_[cmd] then
 		LOG_ERROR("insert failed. cmd:" .. cmd)
 		return false
@@ -26,6 +27,8 @@ function ConnectServerMgr:RegisterMessage(cmd, handler)
 end
 
 function ConnectServerMgr:InitMsgHandle()
+    
+    self:RegisterMessage(csm2cs.RepEnterGame, csm_hander.HandleRepEnterGame)
     
 end
 

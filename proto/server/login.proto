@@ -6,6 +6,7 @@ message S2CRepClientLogin
     optional int32 account_idx	= 2;
 	optional string ip			= 3;
 	optional int32  port		= 4;
+	optional string session_key	= 5;
 }
 
 message LoginShowInfo 
@@ -26,4 +27,10 @@ message S2CRepCreateCharacter
 {
 	optional int32 result				= 1;
     optional LoginShowInfo char_data	= 2;
+}
+
+message S2CRepEnterGame
+{
+	optional int32 result				= 1;
+	optional int64 pid					= 2;
 }

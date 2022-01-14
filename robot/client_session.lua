@@ -98,6 +98,8 @@ function ClientSession:New(o)
 	o.status_ = ClientSession.SS_CREATED
 	o.ip_for_cs_ = ""
     o.port_for_cs_ = 0
+    o.session_key = ""
+    o.pid_ = 0
     
     return o
 end
@@ -117,6 +119,7 @@ function ClientSession:InitMsgHandle()
 	self:RegisterMessage(s2c.S2CRepClientLogin, client_handler.HandleRepClientLogin)
     self:RegisterMessage(s2c.S2CRepCharacterList, client_handler.HandleRepCharacterList)
     self:RegisterMessage(s2c.S2CRepCreateCharacter, client_handler.HandleRepCreateCharacter)
+    self:RegisterMessage(s2c.S2CRepEnterGame, client_handler.HandleRepEnterGame)
 end
 
 function ClientSession:Start()
@@ -125,13 +128,13 @@ end
 
 
 function ClientSession:DoConnCreated()
-	data = { account_name = self.account_name_, password = self.password_ }
-    
     if self:get_status() < ClientSession.SS_INIT_CS_INFO then
         self:set_status(ClientSession.SS_LOGIN_DOING)	
+        data = { account_name = self.account_name_, password = self.password_ }
         self:SendMsg(c2s.C2SReqClientLogin, data)
     else
         self:set_status(ClientSession.SS_ENTER_GAMEING)	
+        data = { pid = self.pid_, account_idx = self.account_idx_, session_key = self.session_key_ }        
         self:SendMsg(c2s.C2SReqEnterGame, data)
     end
 end
