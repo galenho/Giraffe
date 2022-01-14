@@ -46,15 +46,15 @@ function ClientSession.OnConnCreated(conn_idx, is_success, param)
 		global.client_manager.client_conn_map_[conn_idx] = client_session
 		client_session:DoConnCreated()
 	else --不成功，进行重连
-		crossover.add_timer(RETRY_CONNECT_INTERVAL, ClientManager.RetryConnect, param)
+		crossover.add_timer(RETRY_CONNECT_INTERVAL, ClientSession.RetryConnect, param)
 	end
 end
 
 function ClientSession.OnConnClosed(conn_idx)
     client_session = global.client_manager.client_conn_map_[conn_idx]
     if client_session then
-        client_session:DoConnClosed()
         global.client_manager.client_conn_map_[conn_idx] = nil
+        client_session:DoConnClosed()
     end
 end
 
@@ -74,10 +74,13 @@ function ClientSession.Connect2Server(ip, port, account_idx)
     global.tcp_client:connect(ip, port, 
 							ClientSession.OnConnCreated, ClientSession.OnConnClosed, ClientSession.OnDataReceived,
 							4096, 4096, true, param)
+    global.count = global.count + 1
+    --print(global.count)
 end
 
 function ClientSession.RetryConnect(timer_id, param)
 	crossover.remove_timer(timer_id)
+    print("RetryConnect")
 	ClientSession.Connect2Server(param.ip, param.port, param.account_idx);
 end
 
@@ -140,12 +143,14 @@ function ClientSession:DoConnCreated()
 end
 
 function ClientSession:DoConnClosed()
+
     if self:get_status() == ClientSession.SS_INIT_CS_INFO then
         -- 这个状态是自然断
+        ClientSession.Connect2Server(self.ip_for_cs_, self.port_for_cs_, self.account_idx_)
     else
         self:set_status(ClientSession.SS_CREATED)
-        ClientSession.Connect2Server(global.config.ip, global.config.port, self.account_idx_)
-    end	    
+        --ClientSession.Connect2Server(global.config.ip, global.config.port, self.account_idx_)
+    end    
 end
 
 function ClientSession:HandleMsg(msg)

@@ -6,7 +6,7 @@ ClientHandler = {}
 
 function ClientHandler.HandleRepClientLogin(session, msg)
     
-    print("HandleRepClientLogin")
+    --print("HandleRepClientLogin")
 	if session:get_status() ~= ClientSession.SS_LOGIN_DOING then
 		return
 	end
@@ -26,7 +26,7 @@ function ClientHandler.HandleRepClientLogin(session, msg)
 end
 
 function ClientHandler.HandleRepCharacterList(session, msg)
-    print("HandleRepCharacterList")
+    --print("HandleRepCharacterList")
 	if session:get_status() ~= ClientSession.SS_LOGIN_OK then
 		return
 	end
@@ -40,23 +40,22 @@ function ClientHandler.HandleRepCharacterList(session, msg)
 		session:SendMsg(c2s.C2SReqCreateCharacter, req_msg)
 	else
 		-- 进入游戏
-        print("Realy enter game ---- "..msg.char_data[1].pid)
+        --print("Realy enter game ---- "..msg.char_data[1].pid)
         session.pid_ = msg.char_data[1].pid
         session:set_status(ClientSession.SS_INIT_CS_INFO)
         session:Disconnect()
-        ClientSession.Connect2Server(session.ip_for_cs_, session.port_for_cs_, session:get_account_idx())
 	end
 end
 
 function ClientHandler.HandleRepCreateCharacter(session, msg)
-	print("HandleRepCreateCharacter ")
+	--print("HandleRepCreateCharacter ")
 	if session:get_status() ~= ClientSession.SS_LOGIN_OK then
 		return
 	end
 	
 	if msg.result == CreateCharacterResult.E_CCR_SUCCESS then
         -- 进入游戏
-        print("Realy enter game ---- "..msg.char_data.pid)
+        --print("Realy enter game ---- "..msg.char_data.pid)
         
         session:set_status(ClientSession.SS_INIT_CS_INFO)
         session:Disconnect()
@@ -67,14 +66,14 @@ function ClientHandler.HandleRepCreateCharacter(session, msg)
 end
 
 function ClientHandler.HandleRepEnterGame(session, msg)
-	print("HandleRepEnterGame ")
+	--print("HandleRepEnterGame ")
 	if session:get_status() ~= ClientSession.SS_ENTER_GAMEING then
 		return
 	end
 	
 	if msg.result then
         -- 进入游戏
-        print("enter game success ---- "..msg.pid)
+        --print("enter game success ---- "..msg.pid)
         session:set_status(ClientSession.SS_INGAME)
 	else
 		
