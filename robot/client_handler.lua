@@ -40,7 +40,7 @@ function ClientHandler.HandleRepCharacterList(session, msg)
 		session:SendMsg(c2s.C2SReqCreateCharacter, req_msg)
 	else
 		-- ½øÈëÓÎÏ·
-        --print("Realy enter game ---- "..msg.char_data[1].pid)
+        print("Realy enter game ---- "..msg.char_data[1].pid)
         session.pid_ = msg.char_data[1].pid
         session:set_status(ClientSession.SS_INIT_CS_INFO)
         session:Disconnect()
