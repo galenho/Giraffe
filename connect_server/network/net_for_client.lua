@@ -46,7 +46,9 @@ function NetForClient:Init()
 end
 
 function NetForClient:Start()
-    self.tcp_server_:start(global.config.ip_for_client, global.config.port_for_client, NetForClient.OnConnCreated, NetForClient.OnConnClosed, NetForClient.OnDataReceived, 8192, 1024 * 1024 * 4)
+    self.tcp_server_:start(global.config.ip_for_client, global.config.port_for_client, 
+			NetForClient.OnConnCreated, NetForClient.OnConnClosed, NetForClient.OnDataReceived, 
+			8192, 8192)
 end
 
 function NetForClient:Stop()

@@ -14,7 +14,7 @@ function CSMHandler.HandleRepCreateSession(peer, msg)
         return
     end
     
-    client_session:set_status(ClientSession.SS_LOGIN_OK) --设置为登录成功
+    session:set_status(ClientSession.SS_LOGIN_OK) --设置为登录成功
     
     rep_msg = {}
     rep_msg.login_result = LoginResult.E_LR_SUCCESS

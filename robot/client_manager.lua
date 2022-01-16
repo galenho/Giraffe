@@ -29,7 +29,7 @@ function ClientManager:Init()
 end
 
 function ClientManager:Start()
-	for i=1, 500, 1 do
+	for i=1, 1, 1 do
 		account_idx = i
 		client_session = ClientSession:New()
 		client_session:InitMsgHandle()

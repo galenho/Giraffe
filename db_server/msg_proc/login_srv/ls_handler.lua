@@ -17,8 +17,8 @@ function LSHandler.ReqLoginDataEnd(is_success, rs, param)
 			rep_msg.login_result = LoginResult.E_LR_FAILED_INVALIDACCOUNT
 		else -- 有记录, 验证密码是否正确
 			if param.password == rs.password then
-				rep_msg.login_result = LoginResult.E_LR_SUCCESS; -- 成功
-                rep_msg.account_idx = rs.account_idx;
+				rep_msg.login_result = LoginResult.E_LR_SUCCESS -- 成功
+                rep_msg.account_idx = rs.account_idx
 			else
 				rep_msg.login_result = LoginResult.E_LR_FAILED_INVALIDPASSWORD -- 密码错误
             end
@@ -29,8 +29,15 @@ function LSHandler.ReqLoginDataEnd(is_success, rs, param)
 end
 
 function LSHandler.HandleReqClientLogin(peer, msg)
-    param = {client_uid = msg.client_uid, account_name = msg.account_name, password = msg.password}
-    global.gamedb:find_one("account_info", {account_name = msg.account_name}, {}, LSHandler.ReqLoginDataEnd, param)
+    --param = {client_uid = msg.client_uid, account_name = msg.account_name, password = msg.password}
+    --global.gamedb:find_one("account_info", {account_name = msg.account_name}, {}, LSHandler.ReqLoginDataEnd, param)
+	
+	rep_msg = {}
+    rep_msg.client_uid = msg.client_uid
+    rep_msg.account_name = msg.account_name
+	rep_msg.login_result = LoginResult.E_LR_SUCCESS
+	rep_msg.account_idx = msg.account_idx
+	global.net_for_server:SendToLS(ds2ls.RepClientLogin, rep_msg)
 end
 
 -----------------------------------------------------------------
@@ -42,7 +49,6 @@ function LSHandler.HandleReqCharacterList(peer, msg)
     rep_msg.char_data = {}
 
     if account_player_map[msg.account_idx] then
-
 		for k,v in pairs(account_player_map[msg.account_idx]) do
             rep_msg.char_data[v.pid] = {}
             rep_msg.char_data[v.pid].pid = v.pid
@@ -70,7 +76,7 @@ function LSHandler.HandleReqCreateCharacter(peer, msg)
     local account_player_count_map = global.server_res_mgr.account_player_map_
     
     rep_msg = {}
-	rep_msg.client_uid = param.client_uid
+	rep_msg.client_uid = msg.client_uid
     
 	-- 1. 判断同名
     if player_name_map[msg.name] then

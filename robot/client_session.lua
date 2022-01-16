@@ -133,12 +133,12 @@ end
 function ClientSession:DoConnCreated()
     if self:get_status() < ClientSession.SS_INIT_CS_INFO then
         self:set_status(ClientSession.SS_LOGIN_DOING)	
-        data = { account_name = self.account_name_, password = self.password_ }
+        data = { account_name = self.account_name_, password = self.password_, account_idx = self.account_idx_ }
         self:SendMsg(c2s.C2SReqClientLogin, data)
     else
-        --self:set_status(ClientSession.SS_ENTER_GAMEING)	
-        --data = { pid = self.pid_, account_idx = self.account_idx_, session_key = self.session_key_ }        
-        --self:SendMsg(c2s.C2SReqEnterGame, data)
+        self:set_status(ClientSession.SS_ENTER_GAMEING)	
+        data = { pid = self.pid_, account_idx = self.account_idx_, session_key = self.session_key_ }        
+        self:SendMsg(c2s.C2SReqEnterGame, data)
     end
 end
 
@@ -146,13 +146,13 @@ function ClientSession:DoConnClosed()
 
     if self:get_status() == ClientSession.SS_INIT_CS_INFO then
         -- 这个状态是自然断
-        --ClientSession.Connect2Server(self.ip_for_cs_, self.port_for_cs_, self.account_idx_)
+        ClientSession.Connect2Server(self.ip_for_cs_, self.port_for_cs_, self.account_idx_)
         
-        self:set_status(ClientSession.SS_CREATED)
-        ClientSession.Connect2Server(global.config.ip, global.config.port, self.account_idx_)
-    else
         --self:set_status(ClientSession.SS_CREATED)
         --ClientSession.Connect2Server(global.config.ip, global.config.port, self.account_idx_)
+    else
+        self:set_status(ClientSession.SS_CREATED)
+        ClientSession.Connect2Server(global.config.ip, global.config.port, self.account_idx_)
     end    
 end
 
