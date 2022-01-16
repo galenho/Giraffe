@@ -57,7 +57,6 @@ function ClientHandler.HandleRepCreateCharacter(session, msg)
         
         session:set_status(ClientSession.SS_INIT_CS_INFO)
         session:Disconnect()
-        ClientSession.Connect2Server(session.ip_for_cs_, session.port_for_cs_, session:get_account_idx())
 	else
 		
 	end
@@ -71,7 +70,7 @@ function ClientHandler.HandleRepEnterGame(session, msg)
 	
 	if msg.result then
         -- Ω¯»Î”Œœ∑
-        print("enter game success ---- "..msg.pid)
+        --print("enter game success ---- "..msg.pid)
         session:set_status(ClientSession.SS_INGAME)
 		session:Disconnect()
 	else
