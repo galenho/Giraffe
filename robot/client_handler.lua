@@ -71,7 +71,7 @@ function ClientHandler.HandleRepEnterGame(session, msg)
 	
 	if msg.result then
         -- ½øÈëÓÎÏ·
-        --print("enter game success ---- "..msg.pid)
+        print("enter game success ---- "..msg.pid)
         session:set_status(ClientSession.SS_INGAME)
 		session:Disconnect()
 	else

@@ -29,15 +29,15 @@ function LSHandler.ReqLoginDataEnd(is_success, rs, param)
 end
 
 function LSHandler.HandleReqClientLogin(peer, msg)
-    --param = {client_uid = msg.client_uid, account_name = msg.account_name, password = msg.password}
-    --global.gamedb:find_one("account_info", {account_name = msg.account_name}, {}, LSHandler.ReqLoginDataEnd, param)
+    param = {client_uid = msg.client_uid, account_name = msg.account_name, password = msg.password}
+    global.gamedb:find_one("account_info", {account_name = msg.account_name}, {}, LSHandler.ReqLoginDataEnd, param)
 	
-	rep_msg = {}
+	--[[rep_msg = {}
     rep_msg.client_uid = msg.client_uid
     rep_msg.account_name = msg.account_name
 	rep_msg.login_result = LoginResult.E_LR_SUCCESS
 	rep_msg.account_idx = msg.account_idx
-	global.net_for_server:SendToLS(ds2ls.RepClientLogin, rep_msg)
+	global.net_for_server:SendToLS(ds2ls.RepClientLogin, rep_msg)--]]
 end
 
 -----------------------------------------------------------------

@@ -8,19 +8,18 @@ db = mongo.new()
 
 g_rs = {}
 fun_callback = function(is_success, rs)
-	print("begin")
-	dump(g_rs)
-    if is_success then
-		g_rs = rs
+	if is_success then
 		--dump(rs)
+		param = {client_uid = 3258173598713, account_name = "test1", password = "1"}
+		db:find_one("account_info", {account_name = param.account_name}, {}, fun_callback)
 	end
-	print("end")
-	dump(g_rs)
 end
 
 fun_callback_param = function(is_success, rs, param)
     if is_success then
-		dump(rs)
+		--dump(rs)
+		param = {client_uid = 3258173598713, account_name = "test1", password = "1"}
+		db:find_one("account_info", {account_name = param.account_name}, {}, fun_callback_param, param)
 	end
 end
 
@@ -59,6 +58,11 @@ function TestQuery()
 	
 	--db:update_many("player", {hp = 100}, {["$set"] = {name = "kof"}}, fun_callback)
 	--db:find("player", {obj_idx=1}, {}, fun_callback)
+	param = {client_uid = 3258173598713, account_name = "test1", password = "1"}
+	for i=1, 1000000, 1 do
+		db:find_one("account_info", {account_name = param.account_name}, {}, fun_callback)
+	end
+	
 end
 
 TestQuery()

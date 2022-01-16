@@ -72,6 +72,14 @@ function NetForClient:DoConnClosed(conn_idx, is_kickout)
 
 	session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
 	if session then
+		-- Çå³ýÁ¬½Ó
+		global.client_session_mgr:CleanupSession(session:get_conn_idx())
+	end
+	return
+	
+	--[[
+	session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
+	if session then
 		session:set_offline_time(now_time)
 		src_status = session:get_status()
 
@@ -121,7 +129,7 @@ function NetForClient:DoConnClosed(conn_idx, is_kickout)
 			LOG_ERROR("client_session status is fail")
 		end
 	
-	end
+	end--]]
 end
 
 function NetForClient:DoDataReceived(conn_idx, data, len)
