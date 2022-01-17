@@ -2,7 +2,7 @@
 
 <Project Name="crossover.luaprj" Cmd="" Arg="" Dir="" Toggle="false" >
     <Filter RelativePath="." Toggle="false" >
-        <Filter RelativePath=".\proto" Toggle="false" >
+        <Filter RelativePath=".\proto" Toggle="true" >
             <LuaFile RelativePath=".\netdefines.lua" />
             <LuaFile RelativePath=".\protocol.lua" />
             <Filter RelativePath=".\client" Toggle="true" />
@@ -24,7 +24,7 @@
             <LuaFile RelativePath=".\ws2cs.lua" />
             <LuaFile RelativePath=".\ws2ds.lua" />
         </Filter>
-        <Filter RelativePath=".\db_server" Toggle="false" >
+        <Filter RelativePath=".\db_server" Toggle="true" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
@@ -55,7 +55,7 @@
                 <LuaFile RelativePath=".\net_for_server.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\login_server" Toggle="false" >
+        <Filter RelativePath=".\login_server" Toggle="true" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
@@ -91,7 +91,7 @@
                 <LuaFile RelativePath=".\client_session_mgr.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\robot" Toggle="false" >
+        <Filter RelativePath=".\robot" Toggle="true" >
             <LuaFile RelativePath=".\client_handler.lua" />
             <LuaFile RelativePath=".\client_manager.lua" />
             <LuaFile RelativePath=".\client_session.lua" />
@@ -100,7 +100,7 @@
             <LuaFile RelativePath=".\master.lua" />
             <LuaFile RelativePath=".\server_res_mgr.lua" />
         </Filter>
-        <Filter RelativePath=".\common" Toggle="false" >
+        <Filter RelativePath=".\common" Toggle="true" >
             <LuaFile RelativePath=".\common.lua" />
             <LuaFile RelativePath=".\list.lua" />
             <LuaFile RelativePath=".\peer.lua" />
@@ -120,7 +120,7 @@
                 <LuaFile RelativePath=".\luaxml.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\connect_server" Toggle="false" >
+        <Filter RelativePath=".\connect_server" Toggle="true" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
@@ -200,7 +200,7 @@
                 <LuaFile RelativePath=".\world_object.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\connect_server_mgr" Toggle="false" >
+        <Filter RelativePath=".\connect_server_mgr" Toggle="true" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
@@ -227,162 +227,6 @@
                 <LuaFile RelativePath=".\player.lua" />
                 <LuaFile RelativePath=".\unit.lua" />
             </Filter>
-        </Filter>
-        <Filter RelativePath=".\log_server" Toggle="false" >
-            <LuaFile RelativePath=".\global.lua" />
-            <LuaFile RelativePath=".\main.lua" />
-            <LuaFile RelativePath=".\master.lua" />
-            <LuaFile RelativePath=".\server_res_mgr.lua" />
-            <Filter RelativePath=".\msg_proc" Toggle="false" >
-                <Filter RelativePath=".\connect_srv" Toggle="true" >
-                    <LuaFile RelativePath=".\connect_srv.lua" />
-                    <LuaFile RelativePath=".\cs_handler.lua" />
-                </Filter>
-                <Filter RelativePath=".\login_srv" Toggle="true" >
-                    <LuaFile RelativePath=".\login_srv.lua" />
-                    <LuaFile RelativePath=".\ls_handler.lua" />
-                </Filter>
-                <Filter RelativePath=".\map_srv" Toggle="true" >
-                    <LuaFile RelativePath=".\map_srv.lua" />
-                    <LuaFile RelativePath=".\ms_handler.lua" />
-                </Filter>
-                <Filter RelativePath=".\world_srv" Toggle="true" >
-                    <LuaFile RelativePath=".\world_srv.lua" />
-                    <LuaFile RelativePath=".\ws_handler.lua" />
-                </Filter>
-            </Filter>
-            <Filter RelativePath=".\network" Toggle="true" >
-                <LuaFile RelativePath=".\net_for_server.lua" />
-            </Filter>
-        </Filter>
-        <Filter RelativePath=".\map_server" Toggle="false" >
-            <LuaFile RelativePath=".\global.lua" />
-            <LuaFile RelativePath=".\main.lua" />
-            <LuaFile RelativePath=".\master.lua" />
-            <LuaFile RelativePath=".\server_res_mgr.lua" />
-            <Filter RelativePath=".\client_session" Toggle="true" >
-                <LuaFile RelativePath=".\client_session.lua" />
-                <LuaFile RelativePath=".\client_session_mgr.lua" />
-            </Filter>
-            <Filter RelativePath=".\map" Toggle="false" >
-                <LuaFile RelativePath=".\map.lua" />
-                <LuaFile RelativePath=".\map_instance.lua" />
-                <LuaFile RelativePath=".\map_mgr.lua" />
-                <Filter RelativePath=".\aoi" Toggle="true" >
-                    <LuaFile RelativePath=".\aoi_mgr.lua" />
-                </Filter>
-                <Filter RelativePath=".\rule" Toggle="true" >
-                    <LuaFile RelativePath=".\instance_rule.lua" />
-                    <LuaFile RelativePath=".\instance_rule_general.lua" />
-                </Filter>
-            </Filter>
-            <Filter RelativePath=".\msg_proc" Toggle="false" >
-                <Filter RelativePath=".\connect_srv" Toggle="true" >
-                    <LuaFile RelativePath=".\client_handler.lua" />
-                    <LuaFile RelativePath=".\connect_srv.lua" />
-                    <LuaFile RelativePath=".\cs_handler.lua" />
-                </Filter>
-                <Filter RelativePath=".\db_srv" Toggle="true" >
-                    <LuaFile RelativePath=".\db_srv.lua" />
-                    <LuaFile RelativePath=".\ds_handler.lua" />
-                </Filter>
-                <Filter RelativePath=".\log_srv" Toggle="true" >
-                    <LuaFile RelativePath=".\log_handler.lua" />
-                    <LuaFile RelativePath=".\log_srv.lua" />
-                </Filter>
-                <Filter RelativePath=".\world_srv" Toggle="true" >
-                    <LuaFile RelativePath=".\world_srv.lua" />
-                    <LuaFile RelativePath=".\ws_handler.lua" />
-                </Filter>
-            </Filter>
-            <Filter RelativePath=".\network" Toggle="true" >
-                <LuaFile RelativePath=".\map_server.lua" />
-                <LuaFile RelativePath=".\net_for_server.lua" />
-            </Filter>
-            <Filter RelativePath=".\object" Toggle="true" >
-                <LuaFile RelativePath=".\player.lua" />
-                <LuaFile RelativePath=".\unit.lua" />
-            </Filter>
-            <Filter RelativePath=".\fight" Toggle="true" >
-                <Filter RelativePath=".\ai" Toggle="true" />
-                <Filter RelativePath=".\buff" Toggle="true" />
-                <Filter RelativePath=".\skill" Toggle="true" />
-            </Filter>
-        </Filter>
-        <Filter RelativePath=".\world_server" Toggle="false" >
-            <LuaFile RelativePath=".\global.lua" />
-            <LuaFile RelativePath=".\main.lua" />
-            <LuaFile RelativePath=".\master.lua" />
-            <LuaFile RelativePath=".\server_res_mgr.lua" />
-            <LuaFile RelativePath=".\server_run_info.lua" />
-            <Filter RelativePath=".\client_session" Toggle="true" >
-                <LuaFile RelativePath=".\client_session.lua" />
-                <LuaFile RelativePath=".\client_session_mgr.lua" />
-            </Filter>
-            <Filter RelativePath=".\msg_proc" Toggle="false" >
-                <Filter RelativePath=".\connect_mgr" Toggle="true" >
-                    <LuaFile RelativePath=".\connect_srv_mgr.lua" />
-                    <LuaFile RelativePath=".\csm_handler.lua" />
-                </Filter>
-                <Filter RelativePath=".\connect_srv" Toggle="true" >
-                    <LuaFile RelativePath=".\client_handler.lua" />
-                    <LuaFile RelativePath=".\connect_srv.lua" />
-                    <LuaFile RelativePath=".\cs_handler.lua" />
-                </Filter>
-                <Filter RelativePath=".\db_srv" Toggle="true" >
-                    <LuaFile RelativePath=".\db_srv.lua" />
-                    <LuaFile RelativePath=".\ds_handler.lua" />
-                </Filter>
-                <Filter RelativePath=".\login_srv" Toggle="true" >
-                    <LuaFile RelativePath=".\login_srv.lua" />
-                    <LuaFile RelativePath=".\ls_handler.lua" />
-                </Filter>
-                <Filter RelativePath=".\log_srv" Toggle="true" >
-                    <LuaFile RelativePath=".\log_handler.lua" />
-                    <LuaFile RelativePath=".\log_srv.lua" />
-                </Filter>
-                <Filter RelativePath=".\map_srv" Toggle="true" >
-                    <LuaFile RelativePath=".\map_srv.lua" />
-                    <LuaFile RelativePath=".\ms_handler.lua" />
-                </Filter>
-            </Filter>
-            <Filter RelativePath=".\network" Toggle="true" >
-                <LuaFile RelativePath=".\net_for_server.lua" />
-                <LuaFile RelativePath=".\world_server.lua" />
-            </Filter>
-            <Filter RelativePath=".\object" Toggle="true" >
-                <LuaFile RelativePath=".\player.lua" />
-                <LuaFile RelativePath=".\unit.lua" />
-            </Filter>
-        </Filter>
-        <Filter RelativePath=".\config" Toggle="true" >
-            <LuaFile RelativePath=".\buff.lua" />
-            <LuaFile RelativePath=".\scene.lua" />
-        </Filter>
-        <Filter RelativePath=".\doc" Toggle="true" />
-        <Filter RelativePath=".\log" Toggle="true" >
-            <LuaFile RelativePath=".\cs.txt" />
-            <LuaFile RelativePath=".\csm.txt" />
-            <LuaFile RelativePath=".\ds.txt" />
-            <LuaFile RelativePath=".\log.txt" />
-            <LuaFile RelativePath=".\ls.txt" />
-            <LuaFile RelativePath=".\ms.txt" />
-            <LuaFile RelativePath=".\robot.txt" />
-            <LuaFile RelativePath=".\tmp.txt" />
-            <LuaFile RelativePath=".\ws.txt" />
-        </Filter>
-        <Filter RelativePath=".\test" Toggle="false" >
-            <LuaFile RelativePath=".\bson_test.lua" />
-            <LuaFile RelativePath=".\console_test.lua" />
-            <LuaFile RelativePath=".\hello_world.lua" />
-            <LuaFile RelativePath=".\hotfix_module.lua" />
-            <LuaFile RelativePath=".\hotfix_test.lua" />
-            <LuaFile RelativePath=".\httpclient_test.lua" />
-            <LuaFile RelativePath=".\mongo_test.lua" />
-            <LuaFile RelativePath=".\mysql_test.lua" />
-            <LuaFile RelativePath=".\tcpclient_test.lua" />
-            <LuaFile RelativePath=".\tcpserver_test.lua" />
-            <LuaFile RelativePath=".\timer_test.lua" />
         </Filter>
     </Filter>
 </Project>

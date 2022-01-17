@@ -151,10 +151,7 @@ function ClientSession:DoConnClosed()
 
     if self:get_status() == ClientSession.SS_INIT_CS_INFO then
         -- 这个状态是自然断
-        --ClientSession.Connect2Server(self.ip_for_cs_, self.port_for_cs_, self.account_idx_)
-        
-        self:set_status(ClientSession.SS_CREATED)
-        ClientSession.Connect2Server(global.config.ip, global.config.port, self.client_id_)
+        ClientSession.Connect2Server(self.ip_for_cs_, self.port_for_cs_, self.account_idx_)
     else
         self:set_status(ClientSession.SS_CREATED)
         ClientSession.Connect2Server(global.config.ip, global.config.port, self.client_id_)
