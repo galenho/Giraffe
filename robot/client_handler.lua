@@ -46,7 +46,7 @@ function ClientHandler.HandleRepCharacterList(session, msg)
 end
 
 function ClientHandler.HandleRepCreateCharacter(session, msg)
-	--print("HandleRepCreateCharacter ")
+	print("HandleRepCreateCharacter ")
 	if session:get_status() ~= ClientSession.SS_LOGIN_OK then
 		return
 	end

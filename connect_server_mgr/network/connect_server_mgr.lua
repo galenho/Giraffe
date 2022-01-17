@@ -120,6 +120,7 @@ end
 function ConnectServerMgr:DoConnClosed(conn_idx)
 	peer = self.app_srv_conn_map_[conn_idx]
 	if not peer then
+        print("peer is empty")
 		return
 	end
 

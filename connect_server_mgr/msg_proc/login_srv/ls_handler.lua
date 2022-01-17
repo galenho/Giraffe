@@ -8,7 +8,7 @@ function LSHandler.MakeSessionKey(account_idx)
     local session_key_map = global.session_key_map
     
     session_key = ""
-    while true do
+    --[[while true do
         session_key = ""
         for i=1, 16, 1 do
             val = math.random(10)
@@ -17,9 +17,11 @@ function LSHandler.MakeSessionKey(account_idx)
         
         if not session_key_map[session_key] then
             session_key_map[session_key] = account_idx
-            return session_key
+            break
         end
-    end 
+    end--]]
+    
+    return session_key
 end
 
 function LSHandler.GetGoodCs()

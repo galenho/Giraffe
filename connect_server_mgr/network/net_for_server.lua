@@ -64,7 +64,7 @@ function NetForServer:DoConnCreated(conn_idx, is_success, param)
 end
 
 function NetForServer:DoConnClosed(conn_idx)
-
+    
 end
 
 function NetForServer:DoDataReceived(conn_idx, data, len)

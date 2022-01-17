@@ -19,7 +19,6 @@ function ClientManager:New(o)
 	
 	-- 下面写成员变量
 	o.client_session_map_ = {}
-	o.client_conn_map_ = {}
 
     return o
 end
@@ -30,14 +29,13 @@ end
 
 function ClientManager:Start()
 	for i=1, 500, 1 do
-		account_idx = i
 		client_session = ClientSession:New()
 		client_session:InitMsgHandle()
-		client_session.account_idx_ = account_idx
+        client_session.client_id_ = i
 		client_session.account_name_ = "test" .. i
 		client_session.password_ = "1"
 		
-		self.client_session_map_[account_idx] = client_session
+		self.client_session_map_[i] = client_session
 		client_session:Start()
 	end
 end

@@ -36,52 +36,56 @@ ClientSession.SS_OFFLINEING				= 9
 -- 模块函数
 ---------------------------------------------------------------------------------------------------------------------------
 function ClientSession.OnConnCreated(conn_idx, is_success, param)
-    client_session = global.client_manager.client_session_map_[param.account_idx]
+    client_session = global.client_manager.client_session_map_[param.client_id]
 	if not client_session then
         return
     end
     
 	if is_success then
 		client_session.conn_idx_ = conn_idx
-		global.client_manager.client_conn_map_[conn_idx] = client_session
 		client_session:DoConnCreated()
 	else --不成功，进行重连
 		crossover.add_timer(RETRY_CONNECT_INTERVAL, ClientSession.RetryConnect, param)
 	end
 end
 
-function ClientSession.OnConnClosed(conn_idx)
-    client_session = global.client_manager.client_conn_map_[conn_idx]
-    if client_session then
-        global.client_manager.client_conn_map_[conn_idx] = nil
-        client_session:DoConnClosed()
+function ClientSession.OnConnClosed(conn_idx, param)
+   client_session = global.client_manager.client_session_map_[param.client_id]
+	if not client_session then
+        return
     end
+    
+    client_session.conn_idx_ = INVALID_INDEX
+    client_session:DoConnClosed()
 end
 
-function ClientSession.OnDataReceived(conn_idx, data, len)
+function ClientSession.OnDataReceived(conn_idx, data, len, param)
+    client_session = global.client_manager.client_session_map_[param.client_id]
+	if not client_session then
+        return
+    end
+    
+    cmd = GetCmd(data)
+    cmd_name = s2c_array[cmd]
+    msg = pb.decode_cmd(cmd_name, data)
+    msg.cmd = cmd
 
-    client_session = global.client_manager.client_conn_map_[conn_idx]
-	cmd = GetCmd(data)
-	cmd_name = s2c_array[cmd]
-	msg = pb.decode_cmd(cmd_name, data)
-	msg.cmd = cmd
-
-	client_session:HandleMsg(msg)
+    client_session:HandleMsg(msg)
 end
 
-function ClientSession.Connect2Server(ip, port, account_idx)
-    param = {ip = ip, port = port, account_idx = account_idx}
+function ClientSession.Connect2Server(ip, port, client_id)
+    param = {ip = ip, port = port, client_id = client_id}
     global.tcp_client:connect(ip, port, 
 							ClientSession.OnConnCreated, ClientSession.OnConnClosed, ClientSession.OnDataReceived,
-							4096, 4096, true, param)
+							4096, 4096, true, param, param, param)
     global.count = global.count + 1
     --print(global.count)
 end
 
 function ClientSession.RetryConnect(timer_id, param)
 	crossover.remove_timer(timer_id)
-    print("RetryConnect")
-	ClientSession.Connect2Server(param.ip, param.port, param.account_idx);
+    --print("RetryConnect")
+	ClientSession.Connect2Server(param.ip, param.port, param.client_id);
 end
 
 ---------------------------------------------------------------------------------------------------------------------------
@@ -93,6 +97,7 @@ function ClientSession:New(o)
 	setmetatable(o, self)
 	
 	-- 下面写成员变量
+    o.client_id_ = 0
 	o.account_idx_ = 0
 	o.account_name_ = ""
 	o.password_ = ""
@@ -126,18 +131,18 @@ function ClientSession:InitMsgHandle()
 end
 
 function ClientSession:Start()
-    ClientSession.Connect2Server(global.config.ip, global.config.port, self.account_idx_)
+    ClientSession.Connect2Server(global.config.ip, global.config.port, self.client_id_)
 end
 
 
 function ClientSession:DoConnCreated()
     if self:get_status() < ClientSession.SS_INIT_CS_INFO then
         self:set_status(ClientSession.SS_LOGIN_DOING)	
-        data = { account_name = self.account_name_, password = self.password_, account_idx = self.account_idx_ }
+        data = { account_name = self.account_name_, password = self.password_, account_idx = self.client_id_ } -- 这里后面要改????
         self:SendMsg(c2s.C2SReqClientLogin, data)
     else
         self:set_status(ClientSession.SS_ENTER_GAMEING)	
-        data = { pid = self.pid_, account_idx = self.account_idx_, session_key = self.session_key_ }        
+        data = { pid = self.pid_, account_idx = self.account_idx_, session_key = self.session_key_ }
         self:SendMsg(c2s.C2SReqEnterGame, data)
     end
 end
@@ -146,10 +151,13 @@ function ClientSession:DoConnClosed()
 
     if self:get_status() == ClientSession.SS_INIT_CS_INFO then
         -- 这个状态是自然断
-        ClientSession.Connect2Server(self.ip_for_cs_, self.port_for_cs_, self.account_idx_)
+        --ClientSession.Connect2Server(self.ip_for_cs_, self.port_for_cs_, self.account_idx_)
+        
+        self:set_status(ClientSession.SS_CREATED)
+        ClientSession.Connect2Server(global.config.ip, global.config.port, self.client_id_)
     else
         self:set_status(ClientSession.SS_CREATED)
-        ClientSession.Connect2Server(global.config.ip, global.config.port, self.account_idx_)
+        ClientSession.Connect2Server(global.config.ip, global.config.port, self.client_id_)
     end    
 end
 
