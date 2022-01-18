@@ -55,13 +55,13 @@
                 <LuaFile RelativePath=".\net_for_server.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\login_server" Toggle="true" >
+        <Filter RelativePath=".\login_server" Toggle="false" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
             <LuaFile RelativePath=".\server_res_mgr.lua" />
             <Filter RelativePath=".\msg_proc" Toggle="false" >
-                <Filter RelativePath=".\client" Toggle="true" >
+                <Filter RelativePath=".\client" Toggle="false" >
                     <LuaFile RelativePath=".\client_handler.lua" />
                     <LuaFile RelativePath=".\client_msg_proc_handler.lua" />
                 </Filter>
@@ -91,7 +91,7 @@
                 <LuaFile RelativePath=".\client_session_mgr.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\robot" Toggle="true" >
+        <Filter RelativePath=".\robot" Toggle="false" >
             <LuaFile RelativePath=".\client_handler.lua" />
             <LuaFile RelativePath=".\client_manager.lua" />
             <LuaFile RelativePath=".\client_session.lua" />
