@@ -138,7 +138,7 @@ end
 function ClientSession:DoConnCreated()
     if self:get_status() < ClientSession.SS_INIT_CS_INFO then
         self:set_status(ClientSession.SS_LOGIN_DOING)	
-        data = { account_name = self.account_name_, password = self.password_, account_idx = self.client_id_ } -- 这里后面要改????
+        data = { account_name = self.account_name_, password = self.password_ }
         self:SendMsg(c2s.C2SReqClientLogin, data)
     else
         self:set_status(ClientSession.SS_ENTER_GAMEING)	

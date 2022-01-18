@@ -20,7 +20,6 @@ function ClientHandler.HandleReqClientLogin(conn_idx, msg)
 	req_msg.account_name = msg.account_name
 	req_msg.password = msg.password
     req_msg.platform_idx = PlatformType.E_PT_INTERNAL
-	req_msg.account_idx = msg.account_idx
     global.login_server:SendToDS(ls2ds.ReqClientLogin, req_msg)
     
     session:set_status(ClientSession.SS_LOGIN_DOING)

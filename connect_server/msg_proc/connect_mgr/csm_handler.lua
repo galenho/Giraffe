@@ -15,10 +15,12 @@ function CSMHandler.HandleRepEnterGame(peer, msg)
         return
     end
     
-    
     if msg.result then
+        --需要到db_server读取玩家数据
         
     else
+        --直接粗暴关闭连接
+        
         
     end   
 
