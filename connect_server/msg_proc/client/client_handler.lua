@@ -12,7 +12,7 @@ function ClientHandler.HandleReqEnterGame(conn_idx, msg)
     end
     
     session = global.client_session_mgr:AddSession(conn_idx)
-    session:set_status(ClientSession.SS_REQUEST_CHARINFO)
+    session:set_status(ClientSession.SS_CSM_VERIFY)
     session:set_account_idx(msg.account_idx)
     
     -- 发SessionKey到csmgr到验证    

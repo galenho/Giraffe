@@ -5,18 +5,20 @@ ClientSession = {}
 
 -- 刚创建
 ClientSession.SS_CREATED				= 1
+-- 请求进入游戏CSM
+ClientSession.SS_CSM_VERIFY		= 2
 -- 获取player角色信息
-ClientSession.SS_REQUEST_CHARINFO		= 2
+ClientSession.SS_REQUEST_CHARINFO		= 3
 -- 请求创建角色
-ClientSession.SS_REQUEST_CREATE_PLAYER	= 3
+ClientSession.SS_REQUEST_CREATE_PLAYER	= 4
 -- 已进入MS，游戏中
-ClientSession.SS_INGAME					= 4
+ClientSession.SS_INGAME					= 5
 -- 传送中
-ClientSession.SS_TRANSFERING			= 5
+ClientSession.SS_TRANSFERING			= 6
 -- 登出中
-ClientSession.SS_LOGOUT					= 6
+ClientSession.SS_LOGOUT					= 7
 -- 断线中
-ClientSession.SS_OFFLINEING				= 7
+ClientSession.SS_OFFLINEING				= 8
 
 function ClientSession:New(o, conn_idx)
     o = o or {}	

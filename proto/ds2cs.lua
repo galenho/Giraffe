@@ -3,6 +3,7 @@ ds2cs_array = {}
 
 ds2cs = {
 	RepClientLogin						= 160001,	-- 回复登录
+	RepCharacterData					= 160002,	-- 回复玩家数据
 }
 
 for k, v in pairs(ds2cs) do

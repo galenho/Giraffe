@@ -26,7 +26,7 @@ function DBServer:RegisterMessage(cmd, handler)
 end
 
 function DBServer:InitMsgHandle()
-	--self:RegisterMessage(ds2cs.RepClientLogin, ds_hander.HandleRepClientLogin)
+	self:RegisterMessage(ds2cs.RepCharacterData, ds_hander.HandleRepCharacterData)
 end
 
 return DBServer
