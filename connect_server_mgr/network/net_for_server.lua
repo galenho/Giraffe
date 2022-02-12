@@ -68,8 +68,8 @@ function NetForServer:DoConnClosed(conn_idx)
 end
 
 function NetForServer:DoDataReceived(conn_idx, data, len)
-	msg = seri.unpack(data, len)
-	peer = self.app_srv_conn_map_[conn_idx]
+	local msg = seri.unpack(data, len)
+	local peer = self.app_srv_conn_map_[conn_idx]
     
 	if msg.cmd == internal.ReqLogin then
 		if not peer then
@@ -116,7 +116,7 @@ function NetForServer:DoDataReceived(conn_idx, data, len)
 end
 
 function NetForServer:CreatePeer(srv_type)
-	peer = nil
+	local peer = nil
 	if srv_type == ServerType.SERVERTYPE_CONNECT then
 		peer = ConnectServer:New()
     elseif srv_type == ServerType.SERVERTYPE_LOGIN then

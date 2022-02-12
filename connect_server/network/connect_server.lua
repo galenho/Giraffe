@@ -69,7 +69,7 @@ function ConnectServer:Connect2Server(ip, port, srv_type, srv_uid, area_idx)
 
 	LOG_INFO("connect to server. at: " .. ip .. ", " .. port .. ", SERVER TYPE = " .. srv_type)
 
-	param = {ip = ip, port = port, srv_type = srv_type, srv_uid = srv_uid, area_idx = area_idx}
+	local param = {ip = ip, port = port, srv_type = srv_type, srv_uid = srv_uid, area_idx = area_idx}
 	self.tcp_client_:connect(ip, port, 
 							ConnectServer.OnConnCreated, ConnectServer.OnConnClosed, ConnectServer.OnDataReceived, 
 							1024 * 1024 * 4, 1024 * 1024 * 4, true, param)
@@ -153,9 +153,9 @@ function ConnectServer:DoConnCreated(conn_idx, is_success, param)
 end
 
 function ConnectServer:DoDataReceived(conn_idx, data, len)
-	msg = seri.unpack(data, len)
+	local msg = seri.unpack(data, len)
 
-	peer = self.app_srv_conn_map_[conn_idx]
+	local peer = self.app_srv_conn_map_[conn_idx]
 	if peer == nil then
 		return
 	end
@@ -205,7 +205,7 @@ function ConnectServer:DoDataReceived(conn_idx, data, len)
 end
 
 function ConnectServer:DoConnClosed(conn_idx)
-	peer = self.app_srv_conn_map_[conn_idx]
+	local peer = self.app_srv_conn_map_[conn_idx]
 	if not peer then
 		return
 	end
@@ -213,7 +213,7 @@ function ConnectServer:DoConnClosed(conn_idx)
 	LOG_INFO("server disconnected. srv_type:" .. peer.srv_info_.srv_type .. " server uid:" .. 
 		peer.srv_info_.srv_uid .. "  ip:" .. peer.srv_info_.ip .. "  port:" .. peer.srv_info_.port)
 
-	param = {ip = peer.srv_info_.ip, port = peer.srv_info_.port, srv_type = peer.srv_info_.srv_type, srv_uid = peer.srv_info_.srv_uid, area_idx = global.config.area_idx}
+	local param = {ip = peer.srv_info_.ip, port = peer.srv_info_.port, srv_type = peer.srv_info_.srv_type, srv_uid = peer.srv_info_.srv_uid, area_idx = global.config.area_idx}
 
 	if peer.srv_info_.srv_type == ServerType.SERVERTYPE_MAP then
 		crossover.add_timer(RETRY_CONNECT_INTERVAL, ConnectServer.RetryConnect, param)
@@ -279,7 +279,7 @@ function ConnectServer:SendToCSM(cmd, msg)
 end
 
 function ConnectServer:NoticeCSMgrInfo()
-	notify_msg = {}
+	local notify_msg = {}
 	notify_msg.ip = global.config.ip_for_client 
 	notify_msg.port = global.config.port_for_client
 	notify_msg.player_amount = global.client_session_mgr:get_session_count()

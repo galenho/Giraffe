@@ -20,7 +20,7 @@ function CSHandler.HandleReqEnterGame(peer, msg)
     
     local session_key_map = global.session_key_map
     
-    rep_msg = {}
+    local rep_msg = {}
     rep_msg.client_uid = msg.client_uid
     rep_msg.pid = msg.pid
     

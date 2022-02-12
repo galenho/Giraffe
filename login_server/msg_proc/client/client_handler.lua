@@ -5,8 +5,8 @@ local global = require "global"
 ClientHandler = {}
 
 function ClientHandler.HandleReqClientLogin(conn_idx, msg)
-    
-    session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
+
+    local session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
     if not session then
         session = global.client_session_mgr:AddSession(conn_idx)
     end
@@ -15,7 +15,7 @@ function ClientHandler.HandleReqClientLogin(conn_idx, msg)
         return
     end
     
-    req_msg = {}
+    local req_msg = {}
 	req_msg.client_uid = session:get_client_uid()
 	req_msg.account_name = msg.account_name
 	req_msg.password = msg.password
@@ -34,7 +34,7 @@ function ClientHandler.HandleReqCharacterList(session, msg)
         return
     end
     
-    req_msg = {}
+    local req_msg = {}
 	req_msg.client_uid = session:get_client_uid()
 	req_msg.account_idx = session:get_account_idx()
     global.login_server:SendToDS(ls2ds.ReqCharacterList, req_msg)
@@ -47,7 +47,7 @@ function ClientHandler.HandleReqCreateCharacter(session, msg)
         return
     end
     
-    req_msg = {}
+    local req_msg = {}
 	req_msg.client_uid = session:get_client_uid()
 	req_msg.account_idx = session:get_account_idx()
     req_msg.pid = global.server_res_mgr:MakeCharacterGeneralID()
@@ -62,7 +62,7 @@ function ClientHandler.HandleReqDeleteCharacter(conn_idx, msg)
         return
     end
     
-    req_msg = {}
+    local req_msg = {}
 	req_msg.client_uid = session:get_client_uid()
 	req_msg.pid = msg.pid
     global.login_server:SendToDS(ls2ds.ReqDeleteCharacter, req_msg)

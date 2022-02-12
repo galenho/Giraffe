@@ -69,7 +69,7 @@ function LoginServer:Connect2Server(ip, port, srv_type, srv_uid, area_idx)
 
 	LOG_INFO("connect to server. at: " .. ip .. ", " .. port .. ", SERVER TYPE = " .. srv_type)
 
-	param = {ip = ip, port = port, srv_type = srv_type, srv_uid = srv_uid, area_idx = area_idx}
+	local param = {ip = ip, port = port, srv_type = srv_type, srv_uid = srv_uid, area_idx = area_idx}
 	self.tcp_client_:connect(ip, port, 
 							LoginServer.OnConnCreated, LoginServer.OnConnClosed, LoginServer.OnDataReceived, 
 							1024 * 1024 * 4, 1024 * 1024 * 4, true, param)
@@ -134,7 +134,7 @@ function LoginServer:DoConnCreated(conn_idx, is_success, param)
 		peer.network_ = self.tcp_client_
 
 		--发送登录消息
-		request_msg = {}
+		local request_msg = {}
 		request_msg.srv_info = clone(peer.srv_info_) --复制一下srv_info
 		request_msg.srv_info.srv_type = ServerType.SERVERTYPE_LOGIN
 		request_msg.srv_info.srv_uid = self:GetThisSrvUID()
@@ -146,9 +146,9 @@ function LoginServer:DoConnCreated(conn_idx, is_success, param)
 end
 
 function LoginServer:DoDataReceived(conn_idx, data, len)
-	msg = seri.unpack(data, len)
+	local msg = seri.unpack(data, len)
 
-	peer = self.app_srv_conn_map_[conn_idx]
+	local peer = self.app_srv_conn_map_[conn_idx]
 	if peer == nil then
 		return
 	end
@@ -206,7 +206,7 @@ function LoginServer:DoDataReceived(conn_idx, data, len)
 end
 
 function LoginServer:DoConnClosed(conn_idx)
-	peer = self.app_srv_conn_map_[conn_idx]
+	local peer = self.app_srv_conn_map_[conn_idx]
 	if not peer then
 		return
 	end
@@ -214,7 +214,7 @@ function LoginServer:DoConnClosed(conn_idx)
 	LOG_INFO("server disconnected. srv_type:" .. peer.srv_info_.srv_type .. " server uid:" .. 
 		peer.srv_info_.srv_uid .. "  ip:" .. peer.srv_info_.ip .. "  port:" .. peer.srv_info_.port)
 
-	param = {ip = peer.srv_info_.ip, port = peer.srv_info_.port, srv_type = peer.srv_info_.srv_type, srv_uid = peer.srv_info_.srv_uid, area_idx = global.config.area_idx}
+	local param = {ip = peer.srv_info_.ip, port = peer.srv_info_.port, srv_type = peer.srv_info_.srv_type, srv_uid = peer.srv_info_.srv_uid, area_idx = global.config.area_idx}
 
 	if peer.srv_info_.srv_type == ServerType.SERVERTYPE_CSM then
 		crossover.add_timer(RETRY_CONNECT_INTERVAL, LoginServer.RetryConnect, param)

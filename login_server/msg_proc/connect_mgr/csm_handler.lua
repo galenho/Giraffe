@@ -5,7 +5,7 @@ local global = require "global"
 CSMHandler = {}
 
 function CSMHandler.HandleRepCreateSession(peer, msg)
-    session = global.client_session_mgr:get_session_by_uid(msg.client_uid)
+    local session = global.client_session_mgr:get_session_by_uid(msg.client_uid)
     if not session then
         return
     end
@@ -16,7 +16,7 @@ function CSMHandler.HandleRepCreateSession(peer, msg)
     
     session:set_status(ClientSession.SS_LOGIN_OK) --设置为登录成功
     
-    rep_msg = {}
+    local rep_msg = {}
     rep_msg.login_result = LoginResult.E_LR_SUCCESS
     rep_msg.account_idx = msg.account_idx
     rep_msg.ip = msg.ip

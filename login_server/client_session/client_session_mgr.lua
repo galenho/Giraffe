@@ -36,7 +36,7 @@ function ClientSessionMgr:has_accept_session(conn_idx)
 end
 
 function ClientSessionMgr:AddSession(conn_idx)
-	session = ClientSession:New()
+	local session = ClientSession:New()
 	session:Init(conn_idx)
 	
 	if self.client_session_by_conn_idx_map_[conn_idx] then
@@ -56,7 +56,7 @@ function ClientSessionMgr:AddSession(conn_idx)
 end
 
 function ClientSessionMgr:CleanupSession(conn_idx)
-	session = self.client_session_by_conn_idx_map_[conn_idx]
+	local session = self.client_session_by_conn_idx_map_[conn_idx]
 	self.client_session_by_uid_map_[session:get_client_uid()] = nil
 	self.client_session_by_conn_idx_map_[conn_idx] = nil
 end

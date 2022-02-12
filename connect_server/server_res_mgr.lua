@@ -23,7 +23,7 @@ function ServerResMgr:LoadRes()
 	---------------------------------------------------
 	--(1) ∂¡≈‰÷√Œƒº˛xml
 	---------------------------------------------------
-	xml_config = luaxml.load("connect_server.xml")
+	local xml_config = luaxml.load("connect_server.xml")
 	--dump(xml_config)
 	
 	success, log_level_emt = luaxml.find_node(xml_config, "log_level")

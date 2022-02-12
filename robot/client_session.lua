@@ -36,7 +36,7 @@ ClientSession.SS_OFFLINEING				= 9
 -- Ä£¿éº¯Êý
 ---------------------------------------------------------------------------------------------------------------------------
 function ClientSession.OnConnCreated(conn_idx, is_success, param)
-    client_session = global.client_manager.client_session_map_[param.client_id]
+    local client_session = global.client_manager.client_session_map_[param.client_id]
 	if not client_session then
         return
     end
@@ -50,7 +50,7 @@ function ClientSession.OnConnCreated(conn_idx, is_success, param)
 end
 
 function ClientSession.OnConnClosed(conn_idx, param)
-   client_session = global.client_manager.client_session_map_[param.client_id]
+    local client_session = global.client_manager.client_session_map_[param.client_id]
 	if not client_session then
         return
     end
@@ -60,7 +60,7 @@ function ClientSession.OnConnClosed(conn_idx, param)
 end
 
 function ClientSession.OnDataReceived(conn_idx, data, len, param)
-    client_session = global.client_manager.client_session_map_[param.client_id]
+    local client_session = global.client_manager.client_session_map_[param.client_id]
 	if not client_session then
         return
     end
@@ -74,7 +74,7 @@ function ClientSession.OnDataReceived(conn_idx, data, len, param)
 end
 
 function ClientSession.Connect2Server(ip, port, client_id)
-    param = {ip = ip, port = port, client_id = client_id}
+    local param = {ip = ip, port = port, client_id = client_id}
     global.tcp_client:connect(ip, port, 
 							ClientSession.OnConnCreated, ClientSession.OnConnClosed, ClientSession.OnDataReceived,
 							4096, 4096, true, param, param, param)
@@ -167,9 +167,9 @@ function ClientSession:HandleMsg(msg)
 end
 
 function ClientSession:SendMsg(cmd, data)
-	cmd_name = c2s_array[cmd]
-	bytes = pb.encode_cmd(cmd_name, data, cmd)
-	len = #bytes
+	local cmd_name = c2s_array[cmd]
+	local bytes = pb.encode_cmd(cmd_name, data, cmd)
+	local len = #bytes
 
 	if self.conn_idx_ then
 		global.tcp_client:send_msg(self.conn_idx_, bytes, len)

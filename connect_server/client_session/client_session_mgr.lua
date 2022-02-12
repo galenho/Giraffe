@@ -34,8 +34,7 @@ function ClientSessionMgr:CleanupAcceptSession(conn_idx)
 end
 
 function ClientSessionMgr:AddSession(conn_idx)
-	
-	session = ClientSession:New()
+	local session = ClientSession:New()
 	session:Init(conn_idx)
 	
 	if self.client_session_by_conn_idx_map_[conn_idx] then
@@ -55,7 +54,7 @@ function ClientSessionMgr:AddSession(conn_idx)
 end
 
 function ClientSessionMgr:CleanupSession(conn_idx)
-	session = self.client_session_by_conn_idx_map_[conn_idx]
+	local session = self.client_session_by_conn_idx_map_[conn_idx]
 	self.client_session_by_uid_map_[session:get_client_uid()] = nil
 	self.client_session_by_conn_idx_map_[conn_idx] = nil
 end
@@ -79,8 +78,8 @@ function ClientSessionMgr:CloseAllClient()
 end
 
 function ClientSessionMgr:TryContinueCloseOtherClient()
-	count = #self.logout_session_map_
-	have_session_count = 50 - count
+	local count = #self.logout_session_map_
+	local have_session_count = 50 - count
 	
 	for key, value in pairs(self.logout_session_map_) do
 		if have_session_count > 0 then
@@ -119,7 +118,7 @@ function ClientSessionMgr:Broadcast(cmd, data)
 end
 
 function ClientSessionMgr:get_enter_game_session_count()
-	count = 0
+	local count = 0
 	for key, value in pairs(self.client_session_by_conn_idx_map_) do
         session = value
 		if session:get_status() == ClientSession.SS_INGAME or session:get_status() == ClientSession.SS_OFFLINEING then
@@ -131,7 +130,7 @@ function ClientSessionMgr:get_enter_game_session_count()
 end
 
 function ClientSessionMgr:get_offline_session_count()
-	count = 0
+	local count = 0
 	for key, value in pairs(self.client_session_by_conn_idx_map_) do
         session = value
 		if session:get_status() == ClientSession.SS_OFFLINEING then

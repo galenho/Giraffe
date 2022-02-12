@@ -67,10 +67,10 @@ end
 
 function NetForClient:DoConnClosed(conn_idx, is_kickout)
 	
-	now_time = os.time
+	local now_time = os.time
 	global.client_session_mgr:CleanupAcceptSession(conn_idx)
 
-	session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
+	local session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
 	if session then
 		-- Çå³ýÁ¬½Ó
 		global.client_session_mgr:CleanupSession(session:get_conn_idx())

@@ -2,7 +2,7 @@
 
 <Project Name="crossover.luaprj" Cmd="" Arg="" Dir="" Toggle="false" >
     <Filter RelativePath="." Toggle="false" >
-        <Filter RelativePath=".\proto" Toggle="false" >
+        <Filter RelativePath=".\proto" Toggle="true" >
             <LuaFile RelativePath=".\netdefines.lua" />
             <LuaFile RelativePath=".\protocol.lua" />
             <Filter RelativePath=".\client" Toggle="true" />
@@ -91,7 +91,7 @@
                 <LuaFile RelativePath=".\client_session_mgr.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\robot" Toggle="true" >
+        <Filter RelativePath=".\robot" Toggle="false" >
             <LuaFile RelativePath=".\client_handler.lua" />
             <LuaFile RelativePath=".\client_manager.lua" />
             <LuaFile RelativePath=".\client_session.lua" />

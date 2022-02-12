@@ -6,7 +6,7 @@ DSHandler = {}
 
 function DSHandler.HandleRepCharacterData(peer, msg)
 
-	session = global.client_session_mgr:get_session_by_uid(msg.client_uid)
+	local session = global.client_session_mgr:get_session_by_uid(msg.client_uid)
     if not session then
         return
     end
@@ -15,7 +15,7 @@ function DSHandler.HandleRepCharacterData(peer, msg)
         return
     end
 	
-	rep_msg = {}
+	local rep_msg = {}
     rep_msg.result = msg.result
     rep_msg.pid = msg.pid
     session:SendMsg(s2c.S2CRepEnterGame, rep_msg)

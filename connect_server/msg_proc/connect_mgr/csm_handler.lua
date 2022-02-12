@@ -6,7 +6,7 @@ CSMHandler = {}
 
 function CSMHandler.HandleRepEnterGame(peer, msg)
     
-    session = global.client_session_mgr:get_session_by_uid(msg.client_uid)
+    local session = global.client_session_mgr:get_session_by_uid(msg.client_uid)
     if not session then
         return
     end

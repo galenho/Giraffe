@@ -65,10 +65,10 @@ end
 
 function NetForClient:DoConnClosed(conn_idx, is_kickout)
 	
-	now_time = os.time
+	local now_time = os.time
 	global.client_session_mgr:CleanupAcceptSession(conn_idx)
 
-	session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
+	local session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
 	if session then
 		-- Çå³ýÁ¬½Ó
 		global.client_session_mgr:CleanupSession(session:get_conn_idx())
@@ -81,9 +81,9 @@ function NetForClient:DoDataReceived(conn_idx, data, len)
 		return
 	end
 
-	cmd = GetCmd(data)
-	cmd_name = c2s_array[cmd]
-	msg = pb.decode_cmd(cmd_name, data)
+	local cmd = GetCmd(data)
+	local cmd_name = c2s_array[cmd]
+	local msg = pb.decode_cmd(cmd_name, data)
 	msg.cmd = cmd
 	
 	self.msg_handler_:OnNetworkClient(conn_idx, msg)
@@ -91,9 +91,9 @@ end
 
 function NetForClient:SendToClient(conn_idx, cmd, data)
 	if self.tcp_server_ then
-		cmd_name = s2c_array[cmd]
-		bytes = pb.encode_cmd(cmd_name, data, cmd)
-		len = #bytes
+		local cmd_name = s2c_array[cmd]
+		local bytes = pb.encode_cmd(cmd_name, data, cmd)
+		local len = #bytes
 		self.tcp_server_:send_msg(conn_idx, bytes, len)
 	end
 end

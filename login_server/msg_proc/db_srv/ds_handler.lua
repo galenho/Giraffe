@@ -6,7 +6,7 @@ DSHandler = {}
 
 function DSHandler.HandleRepClientLogin(peer, msg)
     
-	client_session = global.client_session_mgr:get_session_by_uid(msg.client_uid)
+	local client_session = global.client_session_mgr:get_session_by_uid(msg.client_uid)
 	if not client_session then
 		return
 	end
@@ -44,7 +44,7 @@ end
 	
 function DSHandler.HandleRepCharacterList(peer, msg)
     
-	client_session = global.client_session_mgr:get_session_by_uid(msg.client_uid);
+	local client_session = global.client_session_mgr:get_session_by_uid(msg.client_uid);
 	if not client_session then
 		LOG_DEBUG("ReqCharacterListEnd: can't get session ptr")
 		return
@@ -55,7 +55,7 @@ function DSHandler.HandleRepCharacterList(peer, msg)
 		return
 	end
 
-	rep_msg = {}
+	local rep_msg = {}
     rep_msg.char_data = {}
     cursor = 1
     for k,v in pairs(msg.char_data) do
@@ -67,7 +67,7 @@ function DSHandler.HandleRepCharacterList(peer, msg)
 end
 
 function DSHandler.HandleRepCreateCharacter(peer, msg)
-    rep_msg = {}
+    local rep_msg = {}
     rep_msg.result = msg.result
     if msg.result == CreateCharacterResult.E_CCR_SUCCESS then
         rep_msg.char_data = {}

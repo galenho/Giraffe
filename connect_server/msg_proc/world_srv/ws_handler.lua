@@ -16,7 +16,7 @@ function WSHandler.HandleRepClientLogin(peer, msg)
 		return
 	end
 
-	rep_msg = {}
+	local rep_msg = {}
 	rep_msg.login_result = msg.login_result
 
 	-- 登陆成功，进行后续操作
