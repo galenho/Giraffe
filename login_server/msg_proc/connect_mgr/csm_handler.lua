@@ -5,6 +5,7 @@ local global = require "global"
 CSMHandler = {}
 
 function CSMHandler.HandleRepCreateSession(peer, msg)
+
     local session = global.client_session_mgr:get_session_by_uid(msg.client_uid)
     if not session then
         return

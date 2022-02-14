@@ -36,14 +36,14 @@ function ClientMsgProcHandler:InitMsgHandle()
 end
 
 function ClientMsgProcHandler:OnNetworkClient(conn_idx, msg)
-    --dump(msg)
+   
     if msg.cmd == c2s.C2SReqClientLogin then
         client_hander.HandleReqClientLogin(conn_idx, msg)
     else
         session = global.client_session_mgr:get_session_by_conn_idx(conn_idx)
         
-		if self.handlers_[cmd] then
-            self.handlers_[cmd](session, msg)
+		if self.handlers_[msg.cmd] then
+            self.handlers_[msg.cmd](session, msg)
         else
             LOG_ERROR("recv invalid msg idx:" .. msg.cmd)
         end
