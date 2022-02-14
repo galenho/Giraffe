@@ -23,6 +23,7 @@ function CSHandler.HandleReqEnterGame(peer, msg)
     local rep_msg = {}
     rep_msg.client_uid = msg.client_uid
     rep_msg.pid = msg.pid
+    rep_msg.account_idx = msg.account_idx
     
     if session_key_map[msg.session_key] then
         if session_key_map[msg.session_key] == msg.account_idx then

@@ -17,7 +17,7 @@ function CSMHandler.HandleRepEnterGame(peer, msg)
     
     if msg.result then
         --需要到db_server读取玩家数据
-		global.connect_server:SendToDS(cs2ds.ReqCharacterData, {client_uid = client_uid, pid = msg.pid})
+		global.connect_server:SendToDS(cs2ds.ReqCharacterData, {pid = msg.pid, account_idx = msg.account_idx, client_uid = msg.client_uid})
     else
         --直接粗暴关闭连接
 		global.net_for_client:DisconnectClient(session:get_conn_idx())

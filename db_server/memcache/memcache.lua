@@ -9,8 +9,12 @@ function Memcache:New(o)
 	setmetatable(o, self)
 	
 	-- 下面写成员变量
-	o.a = 5
-
+    o.character_data_ = {}
+    o.gamedb_worker_thread_ = 0
+    o.pid_ = 0
+    o.account_idx_ = 0
+    o.loaded_ = false
+    
     return o
 end
 

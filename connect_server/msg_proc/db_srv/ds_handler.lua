@@ -5,7 +5,6 @@ local global = require "global"
 DSHandler = {}
 
 function DSHandler.HandleRepCharacterData(peer, msg)
-
 	local session = global.client_session_mgr:get_session_by_uid(msg.client_uid)
     if not session then
         return
@@ -15,6 +14,11 @@ function DSHandler.HandleRepCharacterData(peer, msg)
         return
     end
 	
+    -- ´´½¨Íæ¼Ò msg.data
+    dump(msg.data)
+    
+    session:set_status(ClientSession.SS_INGAME)
+    
 	local rep_msg = {}
     rep_msg.result = msg.result
     rep_msg.pid = msg.pid
