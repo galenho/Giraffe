@@ -1,34 +1,34 @@
 -------------------------------------------------------------
-		Giraffe¼ò½é
+		Giraffeç®€ä»‹
 -------------------------------------------------------------
-    ÔÚcrossover¿ò¼Ü»ù´¡ÉÏ¿ª·¢µÄÒ»¸ö·Ö²¼Ê½MMORPGÓÎÏ··þÎñÆ÷¿ò¼Ü
+    åœ¨crossoveræ¡†æž¶åŸºç¡€ä¸Šå¼€å‘çš„ä¸€ä¸ªåˆ†å¸ƒå¼MMORPGæ¸¸æˆæœåŠ¡å™¨é¡¹ç›®
 
-	¿ª·¢Õß¿ÉÒÔÀûÓÃÏÖ³É´úÂëÄ£°å£¬¿ìËÙ´î½¨ÀàËÆbigworldÒýÇæµÄ¶à½ø³ÌµÄMMORPG¼¯Èº¼Ü¹¹£¬Ò²¿ÉÒÔÇáËÉµØ´î½¨ÆäËûÓÎÏ·ÀàÐÍµÄ¼¯Èº¼Ü¹¹¡£
+	å¼€å‘è€…å¯ä»¥åˆ©ç”¨çŽ°æˆä»£ç æ¨¡æ¿ï¼Œå¿«é€Ÿæ­å»ºç±»ä¼¼bigworldå¼•æ“Žçš„å¤šè¿›ç¨‹çš„MMORPGé›†ç¾¤æž¶æž„ï¼Œä¹Ÿå¯ä»¥è½»æ¾åœ°æ­å»ºå…¶ä»–æ¸¸æˆç±»åž‹çš„é›†ç¾¤æž¶æž„ã€‚
 
 
-	QQ½»Á÷Èº: 365280857 (»¶Ó­¼ÓÈë£¬»¥ÏàÑ§Ï°)
-	    ×÷Õß: galen  
+	QQäº¤æµç¾¤: 365280857 (æ¬¢è¿ŽåŠ å…¥ï¼Œäº’ç›¸å­¦ä¹ )
+	    ä½œè€…: galen  
 		  QQ: 88104725
 	
 
 -------------------------------------------------------------
-		Ê¹ÓÃ·½·¨
+		ä½¿ç”¨æ–¹æ³•
 -------------------------------------------------------------
-Ò»¡¢windows 10ÏÂµÄÊ¹ÓÃ
+ä¸€ã€windows 10ä¸‹çš„ä½¿ç”¨
 
-	1.	°²×°mongodb 4.0
-	2.	ÔËÐÐrun.bat
-	×¢£º³õ´ÎÔËÐÐÐèÒªÔÚdb_serverµÄ¿ØÖÆÌ¨ÏÂÊäÈëÃüÁîinsert accountÀ´ÐÂÔö10000¸öÕÊºÅ
-	3.	ÔËÐÐrun_client.bat
+	1.	å®‰è£…mongodb 4.0
+	2.	è¿è¡Œrun.bat
+	æ³¨ï¼šåˆæ¬¡è¿è¡Œéœ€è¦åœ¨db_serverçš„æŽ§åˆ¶å°ä¸‹è¾“å…¥å‘½ä»¤insert accountæ¥æ–°å¢ž10000ä¸ªå¸å·
+	3.	è¿è¡Œrun_client.bat
 
-¶þ¡¢centos7.6ÏÂµÄÊ¹ÓÃ
+äºŒã€centos7.6ä¸‹çš„ä½¿ç”¨
 
-	1.	°²×°mongodb 4.0
-	2.	ÔÚcrossoverÄ¿Â¼ÏÂÖ´ÐÐchmod -R * 750
-	3.	ÔËÐÐ./run.sh
-	×¢£º³õ´ÎÔËÐÐÐèÒªÔÚdb_serverµÄ¿ØÖÆÌ¨ÏÂÊäÈëÃüÁîinsert accountÀ´ÐÂÔö10000¸öÕÊºÅ
-	4.	ÔËÐÐ./run_client.sh
+	1.	å®‰è£…mongodb 4.0
+	2.	åœ¨crossoverç›®å½•ä¸‹æ‰§è¡Œchmod -R * 750
+	3.	è¿è¡Œ./run.sh
+	æ³¨ï¼šåˆæ¬¡è¿è¡Œéœ€è¦åœ¨db_serverçš„æŽ§åˆ¶å°ä¸‹è¾“å…¥å‘½ä»¤insert accountæ¥æ–°å¢ž10000ä¸ªå¸å·
+	4.	è¿è¡Œ./run_client.sh
 
-Èý¡¢Ô´ÂëµÄ´ò¿ª
+ä¸‰ã€æºç çš„æ‰“å¼€
 
-	ÍÆ¼öÓÃluastudio, Ö±½Ó´ò¿ªcrossover.luaprj¹¤³ÌÎÄ¼þ¼´¿É
+	æŽ¨èç”¨luastudio, ç›´æŽ¥æ‰“å¼€crossover.luaprjå·¥ç¨‹æ–‡ä»¶å³å¯
