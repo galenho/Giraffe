@@ -157,7 +157,7 @@
                 <LuaFile RelativePath=".\marry.lua" />
                 <LuaFile RelativePath=".\rank.lua" />
             </Filter>
-            <Filter RelativePath=".\msg_proc" Toggle="false" >
+            <Filter RelativePath=".\msg_proc" Toggle="true" >
                 <Filter RelativePath=".\client" Toggle="true" >
                     <LuaFile RelativePath=".\achievement_handler.lua" />
                     <LuaFile RelativePath=".\client_handler.lua" />
@@ -168,7 +168,7 @@
                     <LuaFile RelativePath=".\title_handler.lua" />
                     <LuaFile RelativePath=".\vip_handler.lua" />
                 </Filter>
-                <Filter RelativePath=".\connect_mgr" Toggle="false" >
+                <Filter RelativePath=".\connect_mgr" Toggle="true" >
                     <LuaFile RelativePath=".\connect_srv_mgr.lua" />
                     <LuaFile RelativePath=".\csm_handler.lua" />
                 </Filter>
