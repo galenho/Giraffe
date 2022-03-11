@@ -2,7 +2,7 @@
 
 <Project Name="crossover.luaprj" Cmd="" Arg="" Dir="" Toggle="false" >
     <Filter RelativePath="." Toggle="false" >
-        <Filter RelativePath=".\proto" Toggle="false" >
+        <Filter RelativePath=".\proto" Toggle="true" >
             <LuaFile RelativePath=".\netdefines.lua" />
             <LuaFile RelativePath=".\protocol.lua" />
             <Filter RelativePath=".\client" Toggle="true" />
@@ -24,7 +24,7 @@
             <LuaFile RelativePath=".\ws2cs.lua" />
             <LuaFile RelativePath=".\ws2ds.lua" />
         </Filter>
-        <Filter RelativePath=".\db_server" Toggle="false" >
+        <Filter RelativePath=".\db_server" Toggle="true" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
@@ -55,7 +55,7 @@
                 <LuaFile RelativePath=".\net_for_server.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\login_server" Toggle="false" >
+        <Filter RelativePath=".\login_server" Toggle="true" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
@@ -100,7 +100,7 @@
             <LuaFile RelativePath=".\master.lua" />
             <LuaFile RelativePath=".\server_res_mgr.lua" />
         </Filter>
-        <Filter RelativePath=".\common" Toggle="false" >
+        <Filter RelativePath=".\common" Toggle="true" >
             <LuaFile RelativePath=".\common.lua" />
             <LuaFile RelativePath=".\list.lua" />
             <LuaFile RelativePath=".\peer.lua" />
@@ -120,7 +120,7 @@
                 <LuaFile RelativePath=".\luaxml.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\connect_server" Toggle="false" >
+        <Filter RelativePath=".\connect_server" Toggle="true" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
@@ -200,7 +200,7 @@
                 <LuaFile RelativePath=".\world_object.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\connect_server_mgr" Toggle="false" >
+        <Filter RelativePath=".\connect_server_mgr" Toggle="true" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
@@ -232,7 +232,7 @@
             <LuaFile RelativePath=".\buff.lua" />
             <LuaFile RelativePath=".\scene.lua" />
         </Filter>
-        <Filter RelativePath=".\log_server" Toggle="false" >
+        <Filter RelativePath=".\log_server" Toggle="true" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
@@ -259,7 +259,7 @@
                 <LuaFile RelativePath=".\net_for_server.lua" />
             </Filter>
         </Filter>
-        <Filter RelativePath=".\map_server" Toggle="false" >
+        <Filter RelativePath=".\map_server" Toggle="true" >
             <LuaFile RelativePath=".\global.lua" />
             <LuaFile RelativePath=".\main.lua" />
             <LuaFile RelativePath=".\master.lua" />
@@ -318,7 +318,7 @@
                 <LuaFile RelativePath=".\client_session.lua" />
                 <LuaFile RelativePath=".\client_session_mgr.lua" />
             </Filter>
-            <Filter RelativePath=".\msg_proc" Toggle="false" >
+            <Filter RelativePath=".\msg_proc" Toggle="true" >
                 <Filter RelativePath=".\connect_mgr" Toggle="true" >
                     <LuaFile RelativePath=".\connect_srv_mgr.lua" />
                     <LuaFile RelativePath=".\csm_handler.lua" />
@@ -345,7 +345,7 @@
                     <LuaFile RelativePath=".\ms_handler.lua" />
                 </Filter>
             </Filter>
-            <Filter RelativePath=".\network" Toggle="true" >
+            <Filter RelativePath=".\network" Toggle="false" >
                 <LuaFile RelativePath=".\net_for_server.lua" />
                 <LuaFile RelativePath=".\world_server.lua" />
             </Filter>
