@@ -110,9 +110,8 @@ function Master:Stop()
 	
 	global.net_for_server:BroadcastMsg(internal.AppServerShutdown, {})
 	global.world_server:BroadcastMsg(internal.AppServerShutdown, {})
-		
-	crossover.stop(Master.fun_stop_callback)
 	
+	crossover.stop(Master.fun_stop_callback)
 end
 
 function Master:is_stopping()
