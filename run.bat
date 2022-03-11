@@ -5,9 +5,9 @@ cd ..
 cd log_server
 start "log_server" ..\crossoverD.exe
 
-#cd ..
-#cd world_server
-#start "world_server" ..\crossoverD.exe
+cd ..
+cd world_server
+start "world_server" ..\crossoverD.exe
 
 cd ..
 cd map_server
